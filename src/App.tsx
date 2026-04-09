@@ -1685,6 +1685,68 @@ export default function App() {
         </section>
       </main>
 
+      <section className="mx-auto max-w-5xl px-6 py-20 sm:py-24">
+  <div className="rounded-[32px] border border-slate-200 bg-white p-6 dark:border-white/10 dark:bg-[#081120] md:p-10">
+    <h2 className="text-3xl font-semibold tracking-tight sm:text-5xl">
+      LUMEVIO – NFC retail, smart shelf i phygital dla nowoczesnego handlu
+    </h2>
+
+    <p className="mt-6 text-base leading-8 text-slate-600 dark:text-slate-300">
+      LUMEVIO to platforma SaaS tworzona dla firm, które chcą rozwijać nowoczesny
+      <strong> NFC retail</strong>, projektować interaktywne doświadczenia zakupowe
+      i mierzyć efektywność działań offline. Łączymy technologię NFC, analitykę
+      offline, automatyzację oraz AI, aby zamienić fizyczne punkty kontaktu z
+      klientem w mierzalny kanał sprzedaży. Dzięki temu retail, marki premium i
+      nowoczesne organizacje mogą lepiej rozumieć zachowania użytkowników i
+      szybciej optymalizować konwersję.
+    </p>
+
+    <h3 className="mt-10 text-xl font-semibold sm:text-2xl">
+      Jak działa NFC retail w LUMEVIO
+    </h3>
+    <p className="mt-4 text-base leading-8 text-slate-600 dark:text-slate-300">
+      W modelu <strong>NFC retail</strong> klient zbliża telefon do punktu
+      interakcji umieszczonego na półce, produkcie, standzie lub materiale POS.
+      W jednym ruchu może otworzyć landing page, ofertę, formularz leadowy,
+      aktywację promocji albo treść dopasowaną do konkretnej kampanii. LUMEVIO
+      pozwala zarządzać tymi scenariuszami z jednej platformy, analizować wyniki
+      i porównywać skuteczność różnych ekspozycji w sklepie.
+    </p>
+
+    <h3 className="mt-10 text-xl font-semibold sm:text-2xl">
+      Smart shelf jako nowy kanał sprzedaży
+    </h3>
+    <p className="mt-4 text-base leading-8 text-slate-600 dark:text-slate-300">
+      <strong>Smart shelf</strong> w LUMEVIO to nie tylko interaktywna półka,
+      ale pełny system aktywacji klienta w miejscu zakupu. Technologia może
+      wspierać kampanie produktowe, prezentację benefitów, kupony, onboarding,
+      lead capture oraz analizę decyzji podejmowanych bezpośrednio przy półce.
+      Dzięki temu sklep zyskuje nie tylko nowoczesny efekt phygital, ale także
+      realne dane o tym, które punkty styku generują zaangażowanie i sprzedaż.
+    </p>
+
+    <h3 className="mt-10 text-xl font-semibold sm:text-2xl">
+      Phygital i offline analytics w jednej platformie
+    </h3>
+    <p className="mt-4 text-base leading-8 text-slate-600 dark:text-slate-300">
+      <strong>Phygital</strong> to dziś połączenie świata fizycznego i cyfrowego
+      w jednym doświadczeniu klienta. LUMEVIO rozwija ten model, dostarczając
+      platformę do zarządzania interakcjami NFC, treściami, testami kampanii i
+      analityką offline. Marki mogą mierzyć kliknięcia, aktywacje, lokalizacje,
+      czas interakcji oraz ścieżki użytkownika, a następnie wykorzystać AI do
+      poprawy treści, CTA i wyników biznesowych.
+    </p>
+
+    <p className="mt-6 text-base leading-8 text-slate-600 dark:text-slate-300">
+      Jeśli Twoja firma szuka rozwiązania łączącego <strong>NFC retail</strong>,
+      <strong> smart shelf</strong>, <strong>phygital</strong> i
+      <strong> offline analytics</strong>, LUMEVIO tworzy infrastrukturę, która
+      pomaga zwiększać sprzedaż, generować leady i budować nową jakość doświadczeń
+      w handlu stacjonarnym.
+    </p>
+  </div>
+</section>
+
       <footer className="border-t border-slate-200 bg-[#f5f5f7] text-slate-700 dark:border-white/10 dark:bg-[#050512] dark:text-slate-300">
         <div className="mx-auto max-w-7xl px-6 py-10">
           <div className="space-y-3 border-b border-slate-300 pb-6 text-xs leading-6 text-slate-500 dark:border-white/10 dark:text-slate-400">
