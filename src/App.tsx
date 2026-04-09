@@ -1,8 +1,5 @@
 import { FormEvent, MouseEvent, useEffect, useMemo, useRef, useState } from "react";
-import { Helmet } from "react-helmet-async";
-import { Analytics } from "@vercel/analytics/next"
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import Chat from "./components/Chat";
 import {
   BarChart3,
   CheckCircle2,
@@ -10,7 +7,6 @@ import {
   Mail,
   Menu,
   MessageCircle,
-  Phone,
   Radio,
   ScanLine,
   ShieldCheck,
@@ -50,10 +46,7 @@ const COMPANY = {
   brand: "LUMEVIO",
   website: "https://www.lumevio.pl",
   phone: "+48 511 125 651",
-  emails: [
-    "contact@lumevio.pl",
-    "partnership@lumevio.pl",
-  ] as const,
+  emails: ["contact@lumevio.pl", "partnership@lumevio.pl"] as const,
   nip: "6681935834",
   regon: "380004555",
 };
@@ -83,7 +76,7 @@ const copy = {
       cta: "Umów demo",
     },
     hero: {
-      title: "Operating System dla świata fizycznego.",
+      title: "Zwiększ sprzedaż w retailu dzięki NFC i AI",
       subtitle:
         "LUMEVIO zamienia offline w mierzalny, skalowalny kanał sprzedaży. Łączymy NFC, dane i AI, tworząc inteligentną infrastrukturę dla retailu, marketingu i nowoczesnych marek.",
       badge: "Phygital Growth Infrastructure",
@@ -273,7 +266,14 @@ const copy = {
         },
         products: {
           title: "Produkty",
-          links: ["LUMEVIO OS", "LUMEVIO Grid", "LUMEVIO Intelligence", "Offline Analytics", "Automation Engine", "Location Intelligence"],
+          links: [
+            "LUMEVIO OS",
+            "LUMEVIO Grid",
+            "LUMEVIO Intelligence",
+            "Offline Analytics",
+            "Automation Engine",
+            "Location Intelligence",
+          ],
         },
         company: {
           title: "Firma",
@@ -304,7 +304,7 @@ const copy = {
       cta: "Book demo",
     },
     hero: {
-      title: "Operating System for the physical world.",
+      title: "Increase retail sales with NFC and AI",
       subtitle:
         "LUMEVIO transforms offline touchpoints into a measurable, scalable sales channel. We connect NFC, data, and AI to build intelligent infrastructure for retail, marketing, and modern brands.",
       badge: "Phygital Growth Infrastructure",
@@ -494,7 +494,14 @@ const copy = {
         },
         products: {
           title: "Products",
-          links: ["LUMEVIO OS", "LUMEVIO Grid", "LUMEVIO Intelligence", "Offline Analytics", "Automation Engine", "Location Intelligence"],
+          links: [
+            "LUMEVIO OS",
+            "LUMEVIO Grid",
+            "LUMEVIO Intelligence",
+            "Offline Analytics",
+            "Automation Engine",
+            "Location Intelligence",
+          ],
         },
         company: {
           title: "Company",
@@ -714,7 +721,9 @@ function SmartShelfDemo({
           </div>
 
           <h3 className="max-w-xl text-4xl font-semibold leading-tight text-white">
-            {lang === "pl" ? "Zamień półkę w interaktywny kanał sprzedaży" : "Turn the shelf into an interactive sales channel"}
+            {lang === "pl"
+              ? "Zamień półkę w interaktywny kanał sprzedaży"
+              : "Turn the shelf into an interactive sales channel"}
           </h3>
 
           <p className="mt-5 max-w-xl text-sm leading-7 text-white/65 md:text-base">
@@ -748,7 +757,13 @@ function SmartShelfDemo({
                 className="rounded-[22px] border border-white/10 bg-white/5 p-4 backdrop-blur-xl"
               >
                 <div className="mb-3 inline-flex rounded-xl border border-cyan-300/20 bg-cyan-300/10 p-2 text-cyan-200">
-                  {idx === 0 ? <Globe2 className="h-4 w-4" /> : idx === 1 ? <UserRound className="h-4 w-4" /> : <BarChart3 className="h-4 w-4" />}
+                  {idx === 0 ? (
+                    <Globe2 className="h-4 w-4" />
+                  ) : idx === 1 ? (
+                    <UserRound className="h-4 w-4" />
+                  ) : (
+                    <BarChart3 className="h-4 w-4" />
+                  )}
                 </div>
                 <div className="text-sm font-medium text-white/90">{label}</div>
               </motion.div>
@@ -765,7 +780,10 @@ function SmartShelfDemo({
 
             <div className="grid grid-cols-3 gap-3">
               {[1, 2, 3].map((item) => (
-                <div key={item} className="relative rounded-2xl border border-white/10 bg-[#0b1422] p-3 shadow-inner shadow-black/20">
+                <div
+                  key={item}
+                  className="relative rounded-2xl border border-white/10 bg-[#0b1422] p-3 shadow-inner shadow-black/20"
+                >
                   <div className="h-28 rounded-xl bg-gradient-to-b from-fuchsia-500/20 via-transparent to-cyan-400/20" />
                   <div className="mt-3 h-2 w-16 rounded-full bg-white/20" />
                   <div className="mt-2 h-2 w-10 rounded-full bg-white/10" />
@@ -773,7 +791,13 @@ function SmartShelfDemo({
                   {item === 2 && (
                     <>
                       <motion.div
-                        animate={shouldReduceMotion ? {} : active ? { scale: [1, 1.08, 1], opacity: [0.75, 1, 0.75] } : { scale: 1, opacity: 0.75 }}
+                        animate={
+                          shouldReduceMotion
+                            ? {}
+                            : active
+                              ? { scale: [1, 1.08, 1], opacity: [0.75, 1, 0.75] }
+                              : { scale: 1, opacity: 0.75 }
+                        }
                         transition={{ duration: 1.5, repeat: Infinity }}
                         className="relative mt-3 flex items-center justify-center rounded-xl border border-cyan-300/20 bg-cyan-300/10 py-2 text-cyan-200 shadow-[0_0_30px_rgba(34,211,238,0.15)]"
                       >
@@ -781,7 +805,8 @@ function SmartShelfDemo({
                       </motion.div>
 
                       <AnimatePresence>
-                        {active && !shouldReduceMotion &&
+                        {active &&
+                          !shouldReduceMotion &&
                           [0, 1, 2].map((ring) => (
                             <motion.div
                               key={ring}
@@ -801,7 +826,13 @@ function SmartShelfDemo({
           </div>
 
           <motion.div
-            animate={shouldReduceMotion ? {} : active ? { x: -36, y: -50, rotate: -10, scale: 1.04 } : { x: 34, y: 8, rotate: -7, scale: 1 }}
+            animate={
+              shouldReduceMotion
+                ? {}
+                : active
+                  ? { x: -36, y: -50, rotate: -10, scale: 1.04 }
+                  : { x: 34, y: 8, rotate: -7, scale: 1 }
+            }
             transition={{ duration: 0.8 }}
             className="absolute right-0 top-0 h-[340px] w-[185px] rounded-[40px] border border-white/10 bg-white/10 p-3 shadow-[0_30px_120px_-20px_rgba(0,0,0,0.6)] backdrop-blur-xl"
           >
@@ -815,14 +846,21 @@ function SmartShelfDemo({
 
               <div className="relative mt-8 text-center">
                 <motion.div
-                  animate={shouldReduceMotion ? {} : active ? { scale: [1, 1.18, 1], opacity: [0.8, 1, 0.8] } : { scale: 1 }}
+                  animate={
+                    shouldReduceMotion
+                      ? {}
+                      : active
+                        ? { scale: [1, 1.18, 1], opacity: [0.8, 1, 0.8] }
+                        : { scale: 1 }
+                  }
                   transition={{ duration: 1.1, repeat: Infinity }}
                   className="relative mx-auto inline-flex rounded-full border border-cyan-300/25 bg-cyan-300/10 p-4 text-cyan-200 shadow-[0_0_40px_rgba(34,211,238,0.18)]"
                 >
                   <ScanLine className="h-6 w-6" />
 
                   <AnimatePresence>
-                    {active && !shouldReduceMotion &&
+                    {active &&
+                      !shouldReduceMotion &&
                       [0, 1, 2].map((ring) => (
                         <motion.span
                           key={ring}
@@ -850,7 +888,9 @@ function SmartShelfDemo({
 }
 
 function FloatingCloud3D() {
-  const [transform, setTransform] = useState("perspective(2000px) rotateX(0deg) rotateY(0deg) scale(1)");
+  const [transform, setTransform] = useState(
+    "perspective(2000px) rotateX(0deg) rotateY(0deg) scale(1)"
+  );
   const shouldReduceMotion = useReducedMotion();
 
   const handleMove = (e: MouseEvent<HTMLDivElement>) => {
@@ -866,15 +906,32 @@ function FloatingCloud3D() {
   };
 
   return (
-    <div className="relative flex items-center justify-center py-10" onMouseMove={handleMove} onMouseLeave={() => setTransform("perspective(2000px) rotateX(0deg) rotateY(0deg) scale(1)")}>
-      <div className="relative h-[360px] w-full max-w-[420px] transition-transform duration-200 ease-out" style={{ transform, transformStyle: "preserve-3d" }}>
+    <div
+      className="relative flex items-center justify-center py-10"
+      onMouseMove={handleMove}
+      onMouseLeave={() => setTransform("perspective(2000px) rotateX(0deg) rotateY(0deg) scale(1)")}
+    >
+      <div
+        className="relative h-[360px] w-full max-w-[420px] transition-transform duration-200 ease-out"
+        style={{ transform, transformStyle: "preserve-3d" }}
+      >
         <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(217,70,239,0.26),transparent_45%)] blur-3xl" />
         <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.22),transparent_55%)] blur-3xl" />
 
         {!shouldReduceMotion && (
           <>
-            <motion.div animate={{ rotate: 360 }} transition={{ duration: 16, repeat: Infinity, ease: "linear" }} className="absolute inset-6 rounded-full border border-cyan-300/20" style={{ transform: "translateZ(-20px)" }} />
-            <motion.div animate={{ rotate: -360 }} transition={{ duration: 22, repeat: Infinity, ease: "linear" }} className="absolute inset-12 rounded-full border border-fuchsia-400/20" style={{ transform: "translateZ(-30px)" }} />
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-6 rounded-full border border-cyan-300/20"
+              style={{ transform: "translateZ(-20px)" }}
+            />
+            <motion.div
+              animate={{ rotate: -360 }}
+              transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-12 rounded-full border border-fuchsia-400/20"
+              style={{ transform: "translateZ(-30px)" }}
+            />
           </>
         )}
 
@@ -903,7 +960,13 @@ export default function App() {
   const [customers, setCustomers] = useState(180);
   const [basket, setBasket] = useState(24);
   const [uplift, setUplift] = useState(4);
-  const [liveStats, setLiveStats] = useState({ interactions: 1284, locations: 18, leads: 46, engagement: 27 });
+  const [liveStats, setLiveStats] = useState({
+    interactions: 1284,
+    locations: 18,
+    leads: 46,
+    engagement: 27,
+  });
+
   const chatScrollRef = useRef<HTMLDivElement | null>(null);
   const t = copy[lang];
   const shouldReduceMotion = useReducedMotion();
@@ -916,7 +979,10 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("lumevio-lang", lang);
     document.documentElement.lang = lang;
-    document.title = lang === "pl" ? "LUMEVIO | Infrastruktura, Sieć i AI dla Świata Fizycznego" : "LUMEVIO | Infrastructure, Network and AI for the Physical World";
+    document.title =
+      lang === "pl"
+        ? "LUMEVIO – SaaS NFC i AI dla retailu | Zwiększ sprzedaż"
+        : "LUMEVIO – NFC and AI SaaS for retail | Increase sales";
   }, [lang]);
 
   useEffect(() => {
@@ -952,7 +1018,10 @@ export default function App() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const productColumns = useMemo<ProductCard[]>(() => [t.products.os, t.products.grid, t.products.ai], [t.products.os, t.products.grid, t.products.ai]);
+  const productColumns = useMemo<ProductCard[]>(
+    () => [t.products.os, t.products.grid, t.products.ai],
+    [t.products.os, t.products.grid, t.products.ai]
+  );
 
   const roi = useMemo(() => {
     const monthly = stores * customers * 30 * basket * (uplift / 100);
@@ -1022,26 +1091,56 @@ export default function App() {
           </a>
 
           <nav className="hidden items-center gap-7 text-sm lg:flex">
-            <a href="#products" className="transition hover:text-fuchsia-400">{t.nav.products}</a>
-            <a href="#experience" className="transition hover:text-fuchsia-400">{t.nav.experience}</a>
-            <a href="#industries" className="transition hover:text-fuchsia-400">{t.nav.industries}</a>
-            <a href="#analytics" className="transition hover:text-fuchsia-400">{t.nav.analytics}</a>
-            <a href="#roi" className="transition hover:text-fuchsia-400">{t.nav.roi}</a>
-            <a href="#contact" className="transition hover:text-fuchsia-400">{t.nav.contact}</a>
-            <button onClick={() => setChatOpen(true)} className="transition hover:text-fuchsia-400" type="button">{t.nav.chat}</button>
+            <a href="#products" className="transition hover:text-fuchsia-400">
+              {t.nav.products}
+            </a>
+            <a href="#experience" className="transition hover:text-fuchsia-400">
+              {t.nav.experience}
+            </a>
+            <a href="#industries" className="transition hover:text-fuchsia-400">
+              {t.nav.industries}
+            </a>
+            <a href="#analytics" className="transition hover:text-fuchsia-400">
+              {t.nav.analytics}
+            </a>
+            <a href="#roi" className="transition hover:text-fuchsia-400">
+              {t.nav.roi}
+            </a>
+            <a href="#contact" className="transition hover:text-fuchsia-400">
+              {t.nav.contact}
+            </a>
+            <button onClick={() => setChatOpen(true)} className="transition hover:text-fuchsia-400" type="button">
+              {t.nav.chat}
+            </button>
           </nav>
 
           <div className="flex items-center gap-2">
-            <button type="button" onClick={() => setLang((prev) => (prev === "pl" ? "en" : "pl"))} className="rounded-full border border-slate-400/40 px-3 py-1 text-xs">
+            <button
+              type="button"
+              onClick={() => setLang((prev) => (prev === "pl" ? "en" : "pl"))}
+              className="rounded-full border border-slate-400/40 px-3 py-1 text-xs"
+            >
               {lang.toUpperCase()}
             </button>
-            <button type="button" onClick={() => setTheme((prev) => (prev === "dark" ? "light" : "dark"))} className="rounded-full border border-slate-400/40 px-3 py-1 text-xs">
+            <button
+              type="button"
+              onClick={() => setTheme((prev) => (prev === "dark" ? "light" : "dark"))}
+              className="rounded-full border border-slate-400/40 px-3 py-1 text-xs"
+            >
               {theme === "dark" ? "Light" : "Dark"}
             </button>
-            <a href="#contact" className="hidden rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-4 py-2 text-xs font-semibold text-slate-950 sm:inline-flex">
+            <a
+              href="#contact"
+              className="hidden rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-4 py-2 text-xs font-semibold text-slate-950 sm:inline-flex"
+            >
               {t.nav.cta}
             </a>
-            <button type="button" onClick={() => setMobileOpen((prev) => !prev)} className="inline-flex rounded-full border border-slate-400/40 p-2 lg:hidden" aria-label="Open navigation">
+            <button
+              type="button"
+              onClick={() => setMobileOpen((prev) => !prev)}
+              className="inline-flex rounded-full border border-slate-400/40 p-2 lg:hidden"
+              aria-label="Open navigation"
+            >
               {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
             </button>
           </div>
@@ -1064,11 +1163,23 @@ export default function App() {
                   { href: "#roi", label: t.nav.roi },
                   { href: "#contact", label: t.nav.contact },
                 ].map((item) => (
-                  <a key={item.href} href={item.href} onClick={() => setMobileOpen(false)} className="rounded-xl px-2 py-2 transition hover:bg-black/5 dark:hover:bg-white/5">
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="rounded-xl px-2 py-2 transition hover:bg-black/5 dark:hover:bg-white/5"
+                  >
                     {item.label}
                   </a>
                 ))}
-                <button type="button" onClick={() => { setChatOpen(true); setMobileOpen(false); }} className="rounded-xl px-2 py-2 text-left transition hover:bg-black/5 dark:hover:bg-white/5">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setChatOpen(true);
+                    setMobileOpen(false);
+                  }}
+                  className="rounded-xl px-2 py-2 text-left transition hover:bg-black/5 dark:hover:bg-white/5"
+                >
                   {t.nav.chat}
                 </button>
               </div>
@@ -1079,11 +1190,20 @@ export default function App() {
 
       <main id="home" className="overflow-hidden">
         <section className="relative min-h-screen pt-28">
-          <img src={visuals.hero} alt="LUMEVIO platforma NFC, AI i phygital dla retailu" className="absolute inset-0 h-full w-full object-cover" />
+          <img
+            src={visuals.hero}
+            alt="LUMEVIO platforma NFC, AI i phygital dla retailu"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-[#040019]/90 via-[#040019]/80 to-[#040019]/40" />
 
           <div className="relative mx-auto grid min-h-[calc(100vh-7rem)] max-w-7xl items-center gap-10 px-6 lg:grid-cols-[1.05fr_0.95fr]">
-            <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }} animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="max-w-3xl space-y-8">
+            <motion.div
+              initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }}
+              animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="max-w-3xl space-y-8"
+            >
               <div className="inline-flex items-center gap-2 rounded-full border border-fuchsia-400/20 bg-fuchsia-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-fuchsia-300">
                 <Sparkles className="h-3.5 w-3.5" />
                 {t.hero.badge}
@@ -1101,14 +1221,20 @@ export default function App() {
 
               <div className="flex flex-wrap gap-3">
                 {t.hero.stats.map((item) => (
-                  <div key={item} className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/80 backdrop-blur">
+                  <div
+                    key={item}
+                    className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/80 backdrop-blur"
+                  >
                     {item}
                   </div>
                 ))}
               </div>
 
               <div className="flex flex-wrap gap-4">
-                <a href="#products" className="rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-7 py-3 font-semibold text-slate-950">
+                <a
+                  href="#products"
+                  className="rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-7 py-3 font-semibold text-slate-950"
+                >
                   {t.hero.ctaPrimary}
                 </a>
                 <a href="#contact" className="rounded-full border border-white/60 px-7 py-3 font-semibold text-white">
@@ -1117,7 +1243,12 @@ export default function App() {
               </div>
             </motion.div>
 
-            <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, x: 30 }} animate={shouldReduceMotion ? {} : { opacity: 1, x: 0 }} transition={{ duration: 0.9 }} className="relative">
+            <motion.div
+              initial={shouldReduceMotion ? {} : { opacity: 0, x: 30 }}
+              animate={shouldReduceMotion ? {} : { opacity: 1, x: 0 }}
+              transition={{ duration: 0.9 }}
+              className="relative"
+            >
               <div className="grid gap-6">
                 <FloatingCloud3D />
                 <div className="grid gap-4 sm:grid-cols-3">
@@ -1126,7 +1257,10 @@ export default function App() {
                     { icon: Globe2, label: "Global rollout" },
                     { icon: Zap, label: "Real-time actions" },
                   ].map((item) => (
-                    <div key={item.label} className="rounded-[24px] border border-white/10 bg-white/5 p-4 text-white backdrop-blur-xl">
+                    <div
+                      key={item.label}
+                      className="rounded-[24px] border border-white/10 bg-white/5 p-4 text-white backdrop-blur-xl"
+                    >
                       <item.icon className="mb-3 h-5 w-5 text-cyan-300" />
                       <div className="text-sm font-medium">{item.label}</div>
                     </div>
@@ -1145,7 +1279,10 @@ export default function App() {
             </div>
             <div className="md:col-span-2 grid gap-4 md:grid-cols-3">
               {t.trust.points.map((point) => (
-                <div key={point} className="rounded-[24px] border border-slate-200/70 bg-slate-50 p-5 dark:border-white/10 dark:bg-[#0b1422]">
+                <div
+                  key={point}
+                  className="rounded-[24px] border border-slate-200/70 bg-slate-50 p-5 dark:border-white/10 dark:bg-[#0b1422]"
+                >
                   <CheckCircle2 className="mb-3 h-5 w-5 text-cyan-400" />
                   <p className="text-sm leading-7 text-slate-600 dark:text-slate-300">{point}</p>
                 </div>
@@ -1155,19 +1292,38 @@ export default function App() {
         </section>
 
         <section id="products" className="mx-auto max-w-7xl px-6 py-24 sm:py-28">
-          <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} className="mx-auto max-w-3xl text-center">
+          <motion.div
+            initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+            whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="mx-auto max-w-3xl text-center"
+          >
             <div className="inline-flex items-center rounded-full border border-fuchsia-500/20 bg-fuchsia-500/5 px-4 py-2 text-xs font-medium uppercase tracking-[0.22em] text-fuchsia-500">
               LUMEVIO Ecosystem
             </div>
             <h2 className="mt-6 text-3xl font-semibold tracking-tight sm:text-5xl">{t.products.title}</h2>
-            <p className="mt-5 text-base leading-8 text-slate-600 dark:text-slate-300 sm:text-lg">{t.products.subtitle}</p>
+            <p className="mt-5 text-base leading-8 text-slate-600 dark:text-slate-300 sm:text-lg">
+              {t.products.subtitle}
+            </p>
           </motion.div>
 
           <div className="mt-14 grid gap-8 lg:grid-cols-3">
             {productColumns.map((product, index) => (
-              <motion.article key={product.name} initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: index * 0.12, duration: 0.55 }} className="group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white/90 shadow-[0_20px_80px_-30px_rgba(168,85,247,0.35)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_30px_100px_-30px_rgba(34,211,238,0.28)] dark:border-white/10 dark:bg-[#0a0a1d]/95">
+              <motion.article
+                key={product.name}
+                initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
+                whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ delay: index * 0.12, duration: 0.55 }}
+                className="group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white/90 shadow-[0_20px_80px_-30px_rgba(168,85,247,0.35)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_30px_100px_-30px_rgba(34,211,238,0.28)] dark:border-white/10 dark:bg-[#0a0a1d]/95"
+              >
                 <div className="overflow-hidden">
-                  <img src={product.image} alt={product.name} className="h-56 w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="h-56 w-full object-cover transition duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
                 </div>
 
                 <div className="p-7">
@@ -1199,7 +1355,12 @@ export default function App() {
 
         <section id="experience" className="bg-[#05051b] py-20 text-white sm:py-24">
           <div className="mx-auto max-w-7xl px-6">
-            <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} className="max-w-3xl">
+            <motion.div
+              initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+              whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="max-w-3xl"
+            >
               <h2 className="text-3xl font-semibold sm:text-5xl">{t.experience.title}</h2>
               <p className="mt-4 text-slate-300">{t.experience.subtitle}</p>
             </motion.div>
@@ -1222,14 +1383,26 @@ export default function App() {
                 </div>
               </div>
 
-              <SmartShelfDemo labels={t.experience.labels} shelf={t.experience.shelf} trigger={t.experience.trigger} tap={t.experience.tap} live={t.experience.live} lang={lang} />
+              <SmartShelfDemo
+                labels={t.experience.labels}
+                shelf={t.experience.shelf}
+                trigger={t.experience.trigger}
+                tap={t.experience.tap}
+                live={t.experience.live}
+                lang={lang}
+              />
             </div>
           </div>
         </section>
 
         <section id="industries" className="relative overflow-hidden bg-[#05051b] py-20 text-white sm:py-24">
           <div className="relative mx-auto max-w-7xl px-6">
-            <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} className="mx-auto max-w-3xl text-center">
+            <motion.div
+              initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+              whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="mx-auto max-w-3xl text-center"
+            >
               <div className="inline-flex items-center rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.22em] text-cyan-200">
                 {t.industries.badge}
               </div>
@@ -1239,9 +1412,22 @@ export default function App() {
 
             <div className="mt-14 grid gap-8 lg:grid-cols-3">
               {t.industries.items.map((item, index) => (
-                <motion.article key={item.name} initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: index * 0.12, duration: 0.55 }} whileHover={shouldReduceMotion ? undefined : { y: -8 }} className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-white/5 shadow-[0_20px_80px_-30px_rgba(34,211,238,0.15)] backdrop-blur-xl">
+                <motion.article
+                  key={item.name}
+                  initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
+                  whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ delay: index * 0.12, duration: 0.55 }}
+                  whileHover={shouldReduceMotion ? undefined : { y: -8 }}
+                  className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-white/5 shadow-[0_20px_80px_-30px_rgba(34,211,238,0.15)] backdrop-blur-xl"
+                >
                   <div className="overflow-hidden">
-                    <img src={item.image} alt={item.name} className="h-60 w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="h-60 w-full object-cover transition duration-700 group-hover:scale-105"
+                      loading="lazy"
+                    />
                   </div>
                   <div className="p-7">
                     <div className="mb-5 flex items-start justify-between gap-4">
@@ -1265,7 +1451,10 @@ export default function App() {
                       ))}
                     </div>
 
-                    <button type="button" className="mt-6 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white transition hover:border-cyan-300/30 hover:text-cyan-200">
+                    <button
+                      type="button"
+                      className="mt-6 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white transition hover:border-cyan-300/30 hover:text-cyan-200"
+                    >
                       {t.industries.cta}
                     </button>
                   </div>
@@ -1288,12 +1477,23 @@ export default function App() {
                   { label: t.roi.basket, value: basket, setValue: setBasket, min: 5, max: 500, step: 1 },
                   { label: t.roi.uplift, value: uplift, setValue: setUplift, min: 1, max: 20, step: 1 },
                 ].map((item) => (
-                  <div key={item.label} className="rounded-[24px] border border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-[#0b1422]">
+                  <div
+                    key={item.label}
+                    className="rounded-[24px] border border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-[#0b1422]"
+                  >
                     <div className="mb-2 flex items-center justify-between text-sm text-slate-500 dark:text-white/70">
                       <span>{item.label}</span>
                       <span className="font-semibold text-slate-900 dark:text-white">{item.value}</span>
                     </div>
-                    <input type="range" min={item.min} max={item.max} step={item.step} value={item.value} onChange={(e) => item.setValue(Number(e.target.value))} className="w-full accent-cyan-400" />
+                    <input
+                      type="range"
+                      min={item.min}
+                      max={item.max}
+                      step={item.step}
+                      value={item.value}
+                      onChange={(e) => item.setValue(Number(e.target.value))}
+                      className="w-full accent-cyan-400"
+                    />
                   </div>
                 ))}
               </div>
@@ -1323,7 +1523,9 @@ export default function App() {
                   <MessageCircle className="h-4 w-4" />
                   {t.roi.interactions}
                 </div>
-                <div className="text-3xl font-semibold text-white">{Math.round(roi.interactions).toLocaleString(lang === "pl" ? "pl-PL" : "en-US")}</div>
+                <div className="text-3xl font-semibold text-white">
+                  {Math.round(roi.interactions).toLocaleString(lang === "pl" ? "pl-PL" : "en-US")}
+                </div>
               </div>
             </div>
           </div>
@@ -1331,7 +1533,12 @@ export default function App() {
 
         <section id="analytics" className="relative overflow-hidden bg-[#05051b] py-20 text-white sm:py-24">
           <div className="relative mx-auto max-w-7xl px-6">
-            <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} className="max-w-3xl">
+            <motion.div
+              initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+              whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="max-w-3xl"
+            >
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-cyan-200">
                 <Sparkles className="h-3.5 w-3.5" />
                 LUMEVIO Intelligence Layer
@@ -1341,7 +1548,11 @@ export default function App() {
             </motion.div>
 
             <div className="mt-8 overflow-hidden rounded-[24px] border border-cyan-300/20 bg-cyan-300/10 px-4 py-3 text-sm text-cyan-100 backdrop-blur-xl">
-              <motion.div animate={shouldReduceMotion ? {} : { x: ["0%", "-12%", "0%"] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} className="whitespace-nowrap">
+              <motion.div
+                animate={shouldReduceMotion ? {} : { x: ["0%", "-12%", "0%"] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                className="whitespace-nowrap"
+              >
                 {t.analytics.ticker}
               </motion.div>
             </div>
@@ -1353,13 +1564,28 @@ export default function App() {
                 { label: t.analytics.cards[2], value: liveStats.leads, icon: UserRound },
                 { label: t.analytics.cards[3], value: `${liveStats.engagement}%`, icon: TrendingUp },
               ].map((card, index) => (
-                <motion.div key={card.label} initial={shouldReduceMotion ? {} : { opacity: 0, y: 18 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: index * 0.08 }} className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-[#081120] p-5 shadow-[0_20px_70px_-25px_rgba(0,0,0,0.55)]">
+                <motion.div
+                  key={card.label}
+                  initial={shouldReduceMotion ? {} : { opacity: 0, y: 18 }}
+                  whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ delay: index * 0.08 }}
+                  className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-[#081120] p-5 shadow-[0_20px_70px_-25px_rgba(0,0,0,0.55)]"
+                >
                   <div className="mb-3 inline-flex rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-3 text-cyan-200">
                     <card.icon className="h-5 w-5" />
                   </div>
                   <div className="text-sm text-white/55">{card.label}</div>
-                  <motion.div key={String(card.value)} initial={shouldReduceMotion ? {} : { opacity: 0.4, y: 8 }} animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="mt-2 text-3xl font-semibold tracking-tight text-white">
-                    {typeof card.value === "number" ? card.value.toLocaleString(lang === "pl" ? "pl-PL" : "en-US") : card.value}
+                  <motion.div
+                    key={String(card.value)}
+                    initial={shouldReduceMotion ? {} : { opacity: 0.4, y: 8 }}
+                    animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35 }}
+                    className="mt-2 text-3xl font-semibold tracking-tight text-white"
+                  >
+                    {typeof card.value === "number"
+                      ? card.value.toLocaleString(lang === "pl" ? "pl-PL" : "en-US")
+                      : card.value}
                   </motion.div>
                 </motion.div>
               ))}
@@ -1372,7 +1598,10 @@ export default function App() {
             <h2 className="text-3xl font-semibold sm:text-5xl">{t.faq.title}</h2>
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               {t.faq.items.map((item) => (
-                <div key={item.q} className="rounded-[24px] border border-slate-200 bg-slate-50 p-5 dark:border-white/10 dark:bg-[#0b1422]">
+                <div
+                  key={item.q}
+                  className="rounded-[24px] border border-slate-200 bg-slate-50 p-5 dark:border-white/10 dark:bg-[#0b1422]"
+                >
                   <div className="text-base font-semibold">{item.q}</div>
                   <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{item.a}</p>
                 </div>
@@ -1384,7 +1613,12 @@ export default function App() {
         <section id="contact" className="relative overflow-hidden border-t border-white/10 py-24 text-white">
           <div className="relative mx-auto max-w-7xl px-6">
             <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-              <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, x: -30 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, x: 0 }} viewport={{ once: true }} className="space-y-8">
+              <motion.div
+                initial={shouldReduceMotion ? {} : { opacity: 0, x: -30 }}
+                whileInView={shouldReduceMotion ? {} : { opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="space-y-8"
+              >
                 <div>
                   <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-1 text-xs uppercase tracking-widest text-cyan-200">
                     LUMEVIO CONTACT
@@ -1406,8 +1640,16 @@ export default function App() {
                   <div className="rounded-[24px] border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
                     <div className="mb-2 text-xs uppercase tracking-widest text-cyan-300/70">Direct</div>
                     <div className="space-y-2 text-sm text-white/80">
-                      <p><a href={`tel:${COMPANY.phone.replace(/\s+/g, "")}`} className="hover:text-cyan-300">{COMPANY.phone}</a></p>
-                      <p><a href={COMPANY.website} target="_blank" rel="noreferrer" className="hover:text-cyan-300">{COMPANY.website.replace("https://", "")}</a></p>
+                      <p>
+                        <a href={`tel:${COMPANY.phone.replace(/\s+/g, "")}`} className="hover:text-cyan-300">
+                          {COMPANY.phone}
+                        </a>
+                      </p>
+                      <p>
+                        <a href={COMPANY.website} target="_blank" rel="noreferrer" className="hover:text-cyan-300">
+                          {COMPANY.website.replace("https://", "")}
+                        </a>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -1416,7 +1658,11 @@ export default function App() {
                   <div className="mb-3 text-xs uppercase tracking-widest text-cyan-300/70">Email</div>
                   <div className="grid gap-3 sm:grid-cols-2">
                     {quickEmailList.map((email) => (
-                      <a key={email} href={`mailto:${email}`} className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/85 transition hover:border-cyan-300/30 hover:text-cyan-200">
+                      <a
+                        key={email}
+                        href={`mailto:${email}`}
+                        className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/85 transition hover:border-cyan-300/30 hover:text-cyan-200"
+                      >
                         <Mail className="h-4 w-4" />
                         {email}
                       </a>
@@ -1425,7 +1671,12 @@ export default function App() {
                 </div>
               </motion.div>
 
-              <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, x: 30 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, x: 0 }} viewport={{ once: true }} className="relative">
+              <motion.div
+                initial={shouldReduceMotion ? {} : { opacity: 0, x: 30 }}
+                whileInView={shouldReduceMotion ? {} : { opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
                 <div className="absolute inset-0 rounded-[32px] bg-gradient-to-br from-fuchsia-500/10 to-cyan-400/10 blur-2xl" />
                 <ContactForm t={t.contact} lang={lang} />
               </motion.div>
@@ -1450,18 +1701,24 @@ export default function App() {
             </div>
 
             <div>
-              <h4 className="mb-4 text-xs font-semibold text-slate-900 dark:text-white">{t.footer.columns.explore.title}</h4>
+              <h4 className="mb-4 text-xs font-semibold text-slate-900 dark:text-white">
+                {t.footer.columns.explore.title}
+              </h4>
               <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
                 {t.footer.columns.explore.links.map((item) => (
                   <li key={item.label}>
-                    <a href={item.href} className="transition-colors hover:text-slate-900 dark:hover:text-white">{item.label}</a>
+                    <a href={item.href} className="transition-colors hover:text-slate-900 dark:hover:text-white">
+                      {item.label}
+                    </a>
                   </li>
                 ))}
               </ul>
             </div>
 
             <div>
-              <h4 className="mb-4 text-xs font-semibold text-slate-900 dark:text-white">{t.footer.columns.products.title}</h4>
+              <h4 className="mb-4 text-xs font-semibold text-slate-900 dark:text-white">
+                {t.footer.columns.products.title}
+              </h4>
               <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
                 {t.footer.columns.products.links.map((item) => (
                   <li key={item}>{item}</li>
@@ -1470,7 +1727,9 @@ export default function App() {
             </div>
 
             <div>
-              <h4 className="mb-4 text-xs font-semibold text-slate-900 dark:text-white">{t.footer.columns.company.title}</h4>
+              <h4 className="mb-4 text-xs font-semibold text-slate-900 dark:text-white">
+                {t.footer.columns.company.title}
+              </h4>
               <div className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
                 {t.footer.columns.company.lines.map((line) => (
                   <p key={line}>{line}</p>
@@ -1512,7 +1771,9 @@ export default function App() {
                     onClick={() => {
                       sendChat(undefined, item);
                       const key = item.toLowerCase();
-                      const target = Object.entries(sectionHrefByQuickIntent).find(([intent]) => key.includes(intent))?.[1];
+                      const target = Object.entries(sectionHrefByQuickIntent).find(([intent]) =>
+                        key.includes(intent)
+                      )?.[1];
                       if (target) document.querySelector(target)?.scrollIntoView({ behavior: "smooth" });
                     }}
                     className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/80 transition hover:border-cyan-300/30 hover:text-cyan-200"
@@ -1538,7 +1799,10 @@ export default function App() {
                   placeholder={t.chat.placeholder}
                   className="w-full rounded-xl border border-white/20 bg-transparent px-3 py-2 text-xs outline-none ring-fuchsia-500 focus:ring-2"
                 />
-                <button type="submit" className="rounded-xl bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-3 py-2 text-xs font-semibold text-slate-950">
+                <button
+                  type="submit"
+                  className="rounded-xl bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-3 py-2 text-xs font-semibold text-slate-950"
+                >
                   {t.chat.send}
                 </button>
               </form>
@@ -1547,7 +1811,11 @@ export default function App() {
         </AnimatePresence>
 
         {!chatOpen && (
-          <button type="button" onClick={() => setChatOpen(true)} className="rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-fuchsia-500/30">
+          <button
+            type="button"
+            onClick={() => setChatOpen(true)}
+            className="rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-fuchsia-500/30"
+          >
             {t.chat.open}
           </button>
         )}
