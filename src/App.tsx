@@ -1,5 +1,6 @@
 import { FormEvent, MouseEvent, useEffect, useMemo, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { Analytics } from "@vercel/analytics/next"
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Chat from "./components/Chat";
 import {
