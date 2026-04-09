@@ -51,9 +51,6 @@ const COMPANY = {
   website: "https://www.lumevio.pl",
   phone: "+48 511 125 651",
   emails: [
-    "hello@lumevio.pl",
-    "sales@lumevio.pl",
-    "work@lumevio.pl",
     "contact@lumevio.pl",
     "partnership@lumevio.pl",
   ] as const,
