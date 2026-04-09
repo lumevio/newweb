@@ -1701,9 +1701,9 @@ export default function App() {
             </div>
 
             <div>
-              <h4 className="mb-4 text-xs font-semibold text-slate-900 dark:text-white">
+              <h3 className="mb-4 text-xs font-semibold text-slate-900 dark:text-white">
                 {t.footer.columns.explore.title}
-              </h4>
+              </h3>
               <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
                 {t.footer.columns.explore.links.map((item) => (
                   <li key={item.label}>
@@ -1716,9 +1716,9 @@ export default function App() {
             </div>
 
             <div>
-              <h4 className="mb-4 text-xs font-semibold text-slate-900 dark:text-white">
+              <h3 className="mb-4 text-xs font-semibold text-slate-900 dark:text-white">
                 {t.footer.columns.products.title}
-              </h4>
+              </h3>
               <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
                 {t.footer.columns.products.links.map((item) => (
                   <li key={item}>{item}</li>
@@ -1727,9 +1727,9 @@ export default function App() {
             </div>
 
             <div>
-              <h4 className="mb-4 text-xs font-semibold text-slate-900 dark:text-white">
+              <h3 className="mb-4 text-xs font-semibold text-slate-900 dark:text-white">
                 {t.footer.columns.company.title}
-              </h4>
+              </h3>
               <div className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
                 {t.footer.columns.company.lines.map((line) => (
                   <p key={line}>{line}</p>
