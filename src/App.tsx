@@ -76,16 +76,16 @@ const copy = {
       cta: "Umów demo",
     },
     hero: {
-      title: "Zwiększ sprzedaż w retailu dzięki NFC i AI",
+      title: "Google Analytics dla świata fizycznego",
       subtitle:
-        "LUMEVIO zamienia offline w mierzalny, skalowalny kanał sprzedaży. Łączymy NFC, dane i AI, tworząc inteligentną infrastrukturę dla retailu, marketingu i nowoczesnych marek.",
+        "LUMEVIO mierzy interakcje przy półce, produkcie i w przestrzeni fizycznej tak jak Google Analytics mierzy ruch online. Łączymy punkty NFC, dane i AI, aby zwiększać sprzedaż, leady i skuteczność kampanii offline.",
       badge: "Phygital Growth Infrastructure",
-      stats: ["Offline analytics", "Smart retail", "AI optimization"],
+      stats: ["Offline analytics", "Smart shelf", "AI recommendations"],
       ctaPrimary: "Poznaj platformę",
       ctaSecondary: "Porozmawiajmy",
     },
     trust: {
-      title: "Jedna platforma. Trzy warstwy wzrostu.",
+      title: "Jedna platforma. Pełna widoczność świata fizycznego.",
       points: [
         "Fizyczne punkty styku zamienione w kanał sprzedaży i danych.",
         "Pełna mierzalność interakcji NFC bez potrzeby instalacji aplikacji.",
@@ -93,9 +93,9 @@ const copy = {
       ],
     },
     products: {
-      title: "Trzy produkty, jeden ekosystem wzrostu",
+      title: "Trzy warstwy jednego systemu analityki offline",
       subtitle:
-        "LUMEVIO OS, LUMEVIO Grid i LUMEVIO Intelligence tworzą nową generację infrastruktury phygital dla retailu, bankowości, marek premium i nowoczesnych przestrzeni komercyjnych.",
+        "LUMEVIO OS, LUMEVIO Grid i LUMEVIO Intelligence tworzą system, który aktywuje interakcje w świecie fizycznym, mierzy je w czasie rzeczywistym i zamienia w decyzje biznesowe.",
       os: {
         name: "LUMEVIO OS",
         tag: "The Operating System for the Physical World",
@@ -200,12 +200,40 @@ const copy = {
         "Symulacja sprzedażowa do rozmów handlowych i demo. Finalne wyniki zależą od kategorii, ekspozycji i scenariusza wdrożenia.",
     },
     analytics: {
-      title: "Live analytics panel",
+      title: "Panel danych w czasie rzeczywistym",
       subtitle:
-        "Pokaż, że technologia działa teraz. Dynamiczne liczniki budują wiarygodność i efekt premium.",
+        "To nie jest statyczny landing. To warstwa danych pokazująca, ile interakcji, leadów i aktywnych lokalizacji generuje system w świecie fizycznym.",
       cards: ["Interakcje dziś", "Aktywne lokalizacje", "Leady z kampanii", "Wzrost zaangażowania"],
       ticker:
         "Nowa interakcja retail • Aktywna kampania premium • AI rekomenduje pilotaż • Wykryto nowy punkt styku",
+    },
+    pilot: {
+      badge: "Pilot 30 dni",
+      title: "Uruchom pilotaż w wybranych sklepach i zobacz realne dane sprzedażowe",
+      subtitle:
+        "Zaczynamy od szybkiego wdrożenia pilotażowego w wybranych lokalizacjach. W ciągu 30 dni pokazujemy, które punkty styku generują interakcje, gdzie klient reaguje i jaki potencjał wzrostu ma wdrożenie w całej sieci.",
+      steps: [
+        {
+          title: "1. Wybór sklepów i scenariusza",
+          text: "Wspólnie wybieramy kategorię, strefę sklepu i scenariusz wdrożenia: półka, produkt, kasa, promocja lub materiał POS.",
+        },
+        {
+          title: "2. Aktywacja punktów interakcji",
+          text: "Uruchamiamy inteligentne punkty NFC, treści kampanii i dashboard do śledzenia aktywności oraz jakości interakcji.",
+        },
+        {
+          title: "3. Pomiar i raport końcowy",
+          text: "Po pilocie dostarczamy dane, insighty, rekomendacje AI i plan skalowania na kolejne sklepy lub całą sieć.",
+        },
+      ],
+      metrics: [
+        "Interakcje per sklep",
+        "Najskuteczniejsze lokalizacje",
+        "Aktywność przy półce i przy kasie",
+        "Potencjał rolloutu w całej sieci",
+      ],
+      ctaPrimary: "Porozmawiaj o pilotażu",
+      ctaSecondary: "Przejdź do kontaktu",
     },
     faq: {
       title: "Najczęstsze pytania",
@@ -304,16 +332,16 @@ const copy = {
       cta: "Book demo",
     },
     hero: {
-      title: "Increase retail sales with NFC and AI",
+      title: "Google Analytics for the physical world",
       subtitle:
-        "LUMEVIO transforms offline touchpoints into a measurable, scalable sales channel. We connect NFC, data, and AI to build intelligent infrastructure for retail, marketing, and modern brands.",
+        "LUMEVIO measures shelf, product, and physical-space interactions the way Google Analytics measures online traffic. We connect NFC touchpoints, data, and AI to increase offline sales, leads, and campaign performance.",
       badge: "Phygital Growth Infrastructure",
-      stats: ["Offline analytics", "Smart retail", "AI optimization"],
+      stats: ["Offline analytics", "Smart shelf", "AI recommendations"],
       ctaPrimary: "Explore platform",
       ctaSecondary: "Let’s talk",
     },
     trust: {
-      title: "One platform. Three layers of growth.",
+      title: "One platform. Full visibility into the physical world.",
       points: [
         "Physical touchpoints transformed into a sales and data channel.",
         "Full measurement of NFC interactions with no app install required.",
@@ -321,9 +349,9 @@ const copy = {
       ],
     },
     products: {
-      title: "Three products, one growth ecosystem",
+      title: "Three layers of one offline analytics system",
       subtitle:
-        "LUMEVIO OS, LUMEVIO Grid, and LUMEVIO Intelligence create a next-generation phygital infrastructure for retail, banking, premium brands, and modern commercial spaces.",
+        "LUMEVIO OS, LUMEVIO Grid, and LUMEVIO Intelligence form one system that activates physical-world interactions, measures them in real time, and turns them into business decisions.",
       os: {
         name: "LUMEVIO OS",
         tag: "The Operating System for the Physical World",
@@ -428,12 +456,40 @@ const copy = {
         "Sales simulation for commercial calls and demos. Final results depend on category, exposure, and rollout scenario.",
     },
     analytics: {
-      title: "Live analytics panel",
+      title: "Real-time analytics panel",
       subtitle:
-        "Show that the technology is working right now. Dynamic counters create trust and a premium effect.",
+        "This is not a static landing page. It is a live data layer showing how many interactions, leads, and active locations the system generates in the physical world.",
       cards: ["Interactions today", "Active locations", "Campaign leads", "Engagement uplift"],
       ticker:
         "New retail interaction • Premium campaign active • AI recommends a pilot • New touchpoint detected",
+    },
+    pilot: {
+      badge: "30-day pilot",
+      title: "Launch a pilot in selected stores and see real sales data",
+      subtitle:
+        "We start with a fast pilot rollout in selected locations. Within 30 days, we show which touchpoints generate interactions, where customers engage, and what growth potential exists for a full-network rollout.",
+      steps: [
+        {
+          title: "1. Store and scenario selection",
+          text: "Together we choose the category, store zone, and rollout scenario: shelf, product, checkout, promotion, or POS material.",
+        },
+        {
+          title: "2. Interaction point activation",
+          text: "We activate intelligent NFC touchpoints, campaign content, and a dashboard for tracking activity and interaction quality.",
+        },
+        {
+          title: "3. Measurement and final report",
+          text: "After the pilot, we deliver data, insights, AI recommendations, and a scaling plan for additional stores or the full chain.",
+        },
+      ],
+      metrics: [
+        "Interactions per store",
+        "Best-performing locations",
+        "Shelf and checkout activity",
+        "Full-network rollout potential",
+      ],
+      ctaPrimary: "Talk about a pilot",
+      ctaSecondary: "Go to contact",
     },
     faq: {
       title: "Frequently asked questions",
@@ -538,10 +594,27 @@ const initialLang = (): Lang => {
 
 const sectionHrefByQuickIntent: Record<string, string> = {
   retail: "#industries",
+  bankowość: "#industries",
   banking: "#industries",
   demo: "#contact",
   pricing: "#roi",
+  price: "#roi",
   ceny: "#roi",
+};
+
+const createId = () => {
+  if (typeof globalThis !== "undefined" && globalThis.crypto?.randomUUID) {
+    return globalThis.crypto.randomUUID();
+  }
+  return `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+};
+
+const scrollToHash = (hash: string) => {
+  if (typeof document === "undefined") return;
+  const element = document.querySelector(hash);
+  if (element instanceof HTMLElement) {
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 };
 
 function ContactForm({
@@ -694,7 +767,7 @@ function SmartShelfDemo({
   }, [active]);
 
   return (
-    <div className="relative overflow-hidden rounded-[40px] border border-white/10 bg-[#050b18] p-6 shadow-[0_30px_120px_-30px_rgba(34,211,238,0.22)] md:p-8">
+    <div className="relative overflow-hidden rounded-[40px] border border-white/10 bg-[linear-gradient(145deg,#050b18,#091428,#10143b)] p-6 shadow-[0_30px_120px_-30px_rgba(34,211,238,0.22)] md:p-8">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {!shouldReduceMotion && (
           <>
@@ -722,14 +795,14 @@ function SmartShelfDemo({
 
           <h3 className="max-w-xl text-4xl font-semibold leading-tight text-white">
             {lang === "pl"
-              ? "Zamień półkę w interaktywny kanał sprzedaży"
-              : "Turn the shelf into an interactive sales channel"}
+              ? "Pokaż klientowi produkt dokładnie w momencie decyzji"
+              : "Show the product exactly at the moment of decision"}
           </h3>
 
           <p className="mt-5 max-w-xl text-sm leading-7 text-white/65 md:text-base">
             {lang === "pl"
-              ? "LUMEVIO łączy produkt, punkt NFC i ekran telefonu w jeden scenariusz: aktywację doświadczenia, otwarcie landing page, przechwycenie leada i pomiar skuteczności w czasie rzeczywistym."
-              : "LUMEVIO connects the product, the NFC touchpoint, and the phone screen into one scenario: experience activation, landing page opening, lead capture, and real-time measurement."}
+              ? "Wizualizacja pokazuje realny scenariusz sklepu: klient zbliża telefon ręką do punktu na półce, aktywuje treść, landing, promocję lub formularz i zostawia mierzalny ślad w dashboardzie LUMEVIO."
+              : "This visualization shows a real in-store scenario: a customer moves a phone by hand toward the shelf touchpoint, activates content, a landing page, a promotion, or a form, and leaves a measurable signal inside the LUMEVIO dashboard."}
           </p>
 
           <div className="mt-7 flex flex-wrap gap-3">
@@ -744,7 +817,7 @@ function SmartShelfDemo({
 
             <div className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/75 backdrop-blur-xl">
               <ShieldCheck className="h-4 w-4 text-cyan-300" />
-              Enterprise-ready flow
+              {lang === "pl" ? "Scenariusz enterprise-ready" : "Enterprise-ready scenario"}
             </div>
           </div>
 
@@ -771,8 +844,8 @@ function SmartShelfDemo({
           </div>
         </div>
 
-        <div className="relative min-h-[500px]">
-          <div className="absolute inset-x-0 bottom-4 right-14 rounded-[34px] border border-white/10 bg-white/5 p-5 shadow-[0_20px_80px_-20px_rgba(34,211,238,0.14)] backdrop-blur-xl">
+        <div className="relative min-h-[520px]">
+          <div className="absolute inset-x-0 bottom-2 rounded-[34px] border border-white/10 bg-white/5 p-5 shadow-[0_20px_80px_-20px_rgba(34,211,238,0.14)] backdrop-blur-xl">
             <div className="mb-4 flex items-center justify-between text-xs text-white/45">
               <span className="uppercase tracking-[0.24em]">Shelf A / Premium zone</span>
               <span>SKU 29841</span>
@@ -830,55 +903,91 @@ function SmartShelfDemo({
               shouldReduceMotion
                 ? {}
                 : active
-                  ? { x: -36, y: -50, rotate: -10, scale: 1.04 }
-                  : { x: 34, y: 8, rotate: -7, scale: 1 }
+                  ? { x: -56, y: -36, rotate: -10, scale: 1.03 }
+                  : { x: 40, y: 26, rotate: -14, scale: 0.98 }
             }
-            transition={{ duration: 0.8 }}
-            className="absolute right-0 top-0 h-[340px] w-[185px] rounded-[40px] border border-white/10 bg-white/10 p-3 shadow-[0_30px_120px_-20px_rgba(0,0,0,0.6)] backdrop-blur-xl"
+            transition={{ duration: 0.85 }}
+            className="absolute right-0 top-0"
           >
-            <div className="relative h-full overflow-hidden rounded-[30px] border border-white/10 bg-[#081423] p-4 text-white">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.10),transparent_35%),radial-gradient(circle_at_bottom,rgba(217,70,239,0.08),transparent_30%)]" />
+            <div className="relative h-[330px] w-[230px]">
+              <motion.div
+                animate={
+                  shouldReduceMotion
+                    ? {}
+                    : active
+                      ? { x: [-4, 0, -4] }
+                      : { x: [0, 4, 0] }
+                }
+                transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute bottom-0 right-0 h-[220px] w-[175px] rounded-[60px] bg-[linear-gradient(160deg,#f3d0b0,#d89a72,#9f5e3a)] shadow-[0_25px_60px_-20px_rgba(0,0,0,0.45)]"
+                style={{
+                  clipPath:
+                    "polygon(14% 14%, 32% 4%, 75% 6%, 91% 19%, 96% 43%, 91% 76%, 79% 96%, 34% 100%, 10% 86%, 4% 54%)",
+                }}
+              >
+                <div className="absolute left-[18px] top-[14px] h-[58px] w-[38px] rounded-[20px] bg-[linear-gradient(180deg,#f7dcc4,#dda57d)] opacity-95" />
+                <div className="absolute left-[48px] top-[7px] h-[52px] w-[34px] rounded-[18px] bg-[linear-gradient(180deg,#f6d8be,#deaa83)] opacity-95" />
+                <div className="absolute left-[79px] top-[3px] h-[50px] w-[32px] rounded-[18px] bg-[linear-gradient(180deg,#f5d5ba,#dfaa83)] opacity-95" />
+                <div className="absolute left-[108px] top-[8px] h-[48px] w-[30px] rounded-[18px] bg-[linear-gradient(180deg,#f3d0b0,#dca27a)] opacity-95" />
+                <div className="absolute left-[132px] top-[20px] h-[46px] w-[27px] rounded-[18px] bg-[linear-gradient(180deg,#efc7a6,#d59668)] opacity-95" />
+              </motion.div>
 
-              <div className="relative mb-4 flex items-center justify-between text-xs text-white/45">
-                <span>14:28</span>
-                <TabletSmartphone className="h-4 w-4 text-cyan-200" />
-              </div>
+              <motion.div
+                animate={
+                  shouldReduceMotion
+                    ? {}
+                    : active
+                      ? { x: -64, y: -44, rotate: -10, scale: 1.03 }
+                      : { x: 10, y: 18, rotate: -14, scale: 1 }
+                }
+                transition={{ duration: 0.85 }}
+                className="absolute right-[44px] top-[26px] h-[276px] w-[150px] rounded-[34px] border border-white/10 bg-white/10 p-3 shadow-[0_30px_120px_-20px_rgba(0,0,0,0.6)] backdrop-blur-xl"
+              >
+                <div className="relative h-full overflow-hidden rounded-[26px] border border-white/10 bg-[#081423] p-4 text-white">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.10),transparent_35%),radial-gradient(circle_at_bottom,rgba(217,70,239,0.08),transparent_30%)]" />
 
-              <div className="relative mt-8 text-center">
-                <motion.div
-                  animate={
-                    shouldReduceMotion
-                      ? {}
-                      : active
-                        ? { scale: [1, 1.18, 1], opacity: [0.8, 1, 0.8] }
-                        : { scale: 1 }
-                  }
-                  transition={{ duration: 1.1, repeat: Infinity }}
-                  className="relative mx-auto inline-flex rounded-full border border-cyan-300/25 bg-cyan-300/10 p-4 text-cyan-200 shadow-[0_0_40px_rgba(34,211,238,0.18)]"
-                >
-                  <ScanLine className="h-6 w-6" />
+                  <div className="relative mb-4 flex items-center justify-between text-xs text-white/45">
+                    <span>14:28</span>
+                    <TabletSmartphone className="h-4 w-4 text-cyan-200" />
+                  </div>
 
-                  <AnimatePresence>
-                    {active &&
-                      !shouldReduceMotion &&
-                      [0, 1, 2].map((ring) => (
-                        <motion.span
-                          key={ring}
-                          initial={{ opacity: 0.6, scale: 0.7 }}
-                          animate={{ opacity: 0, scale: 2.8 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 1.2, repeat: Infinity, delay: ring * 0.18 }}
-                          className="absolute inset-0 rounded-full border border-cyan-300/30"
-                        />
-                      ))}
-                  </AnimatePresence>
-                </motion.div>
+                  <div className="relative mt-6 text-center">
+                    <motion.div
+                      animate={
+                        shouldReduceMotion
+                          ? {}
+                          : active
+                            ? { scale: [1, 1.18, 1], opacity: [0.8, 1, 0.8] }
+                            : { scale: 1 }
+                      }
+                      transition={{ duration: 1.1, repeat: Infinity }}
+                      className="relative mx-auto inline-flex rounded-full border border-cyan-300/25 bg-cyan-300/10 p-4 text-cyan-200 shadow-[0_0_40px_rgba(34,211,238,0.18)]"
+                    >
+                      <ScanLine className="h-6 w-6" />
 
-                <div className="mt-5 text-sm font-semibold">{active ? live : tap}</div>
-                <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-3 text-left text-xs leading-5 text-white/60 backdrop-blur-xl">
-                  Dynamic landing • Promo • Lead form • Analytics
+                      <AnimatePresence>
+                        {active &&
+                          !shouldReduceMotion &&
+                          [0, 1, 2].map((ring) => (
+                            <motion.span
+                              key={ring}
+                              initial={{ opacity: 0.6, scale: 0.7 }}
+                              animate={{ opacity: 0, scale: 2.8 }}
+                              exit={{ opacity: 0 }}
+                              transition={{ duration: 1.2, repeat: Infinity, delay: ring * 0.18 }}
+                              className="absolute inset-0 rounded-full border border-cyan-300/30"
+                            />
+                          ))}
+                      </AnimatePresence>
+                    </motion.div>
+
+                    <div className="mt-5 text-sm font-semibold">{active ? live : tap}</div>
+                    <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-3 text-left text-xs leading-5 text-white/60 backdrop-blur-xl">
+                      Dynamic landing • Promo • Lead form • Analytics
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
@@ -981,12 +1090,12 @@ export default function App() {
     document.documentElement.lang = lang;
     document.title =
       lang === "pl"
-        ? "LUMEVIO – SaaS NFC i AI dla retailu | Zwiększ sprzedaż"
-        : "LUMEVIO – NFC and AI SaaS for retail | Increase sales";
+        ? "LUMEVIO – Google Analytics dla świata fizycznego"
+        : "LUMEVIO – Google Analytics for the physical world";
   }, [lang]);
 
   useEffect(() => {
-    setMessages([{ id: crypto.randomUUID(), role: "assistant", text: t.chat.hello }]);
+    setMessages([{ id: createId(), role: "assistant", text: t.chat.hello }]);
   }, [t.chat.hello]);
 
   useEffect(() => {
@@ -1042,31 +1151,43 @@ export default function App() {
 
     if (text.includes("cena") || text.includes("price") || text.includes("pricing")) {
       return lang === "pl"
-        ? "Model cenowy jest elastyczny: SaaS od 999 do 9 999 PLN miesięcznie oraz kontrakty enterprise od 20 000 PLN miesięcznie."
-        : "Pricing is flexible: SaaS plans from 999 to 9,999 PLN monthly and enterprise contracts from 20,000 PLN monthly.";
+        ? "LUMEVIO rozliczamy zwykle w modelu: wdrożenie + miesięczny abonament SaaS + opcjonalnie aktywne punkty NFC. Pilotaże wyceniamy indywidualnie według liczby lokalizacji i scenariusza."
+        : "LUMEVIO is usually priced as: setup + monthly SaaS subscription + optional active NFC touchpoints. Pilot projects are priced individually based on the number of locations and rollout scenario.";
     }
 
     if (text.includes("demo") || text.includes("wdrożenie") || text.includes("implementation")) {
       return lang === "pl"
-        ? "Na demo mapujemy Twoje punkty kontaktu i tworzymy plan wdrożenia SmartTap, OS, Grid i AI krok po kroku."
-        : "During a demo we map your touchpoints and design a step-by-step SmartTap, OS, Grid, and AI rollout plan.";
+        ? "Na demo pokazujemy konkretny scenariusz dla Twojej branży: półka, produkt, stand lub punkt usługowy. Mapujemy punkty styku, KPI i plan pilotażu krok po kroku."
+        : "During the demo we show a concrete scenario for your sector: shelf, product, display, or service point. We map touchpoints, KPIs, and a step-by-step pilot plan.";
     }
 
-    if (text.includes("retail") || text.includes("shelf") || text.includes("półka") || text.includes("store")) {
+    if (
+      text.includes("retail") ||
+      text.includes("shelf") ||
+      text.includes("półka") ||
+      text.includes("store") ||
+      text.includes("sklep")
+    ) {
       return lang === "pl"
-        ? "Dla retailu LUMEVIO działa przy półce, na produkcie i w POS. Tworzymy interaktywne doświadczenia, lead capture i analitykę offline w czasie rzeczywistym."
-        : "For retail, LUMEVIO works at the shelf, on-product, and across POS. We create interactive experiences, lead capture, and real-time offline analytics.";
+        ? "Dla retailu LUMEVIO działa jak Google Analytics dla sklepu fizycznego. Mierzymy interakcje przy półce, aktywujemy landingi i formularze oraz pokazujemy, które ekspozycje realnie zwiększają sprzedaż."
+        : "For retail, LUMEVIO works like Google Analytics for the physical store. We measure shelf interactions, trigger landing pages and forms, and show which placements actually increase sales.";
     }
 
     if (text.includes("bank") || text.includes("banking")) {
       return lang === "pl"
-        ? "Dla bankowości LUMEVIO wspiera onboarding, aktywację ofert i pomiar skuteczności placówek bez potrzeby dodatkowej aplikacji."
-        : "For banking, LUMEVIO supports onboarding, offer activation, and branch performance measurement without requiring an extra app.";
+        ? "W bankowości LUMEVIO wspiera onboarding w oddziale, aktywację ofert i pomiar skuteczności placówek. Klient dotyka punktu NFC i od razu wchodzi w odpowiedni proces lub ofertę."
+        : "In banking, LUMEVIO supports in-branch onboarding, offer activation, and branch performance measurement. The customer taps an NFC point and instantly enters the relevant process or offer.";
+    }
+
+    if (text.includes("hotel") || text.includes("hotele") || text.includes("hospitality")) {
+      return lang === "pl"
+        ? "W hotelach LUMEVIO może działać jako AI concierge, upsell usług i warstwa analityczna dla punktów kontaktu w obiekcie."
+        : "In hotels, LUMEVIO can work as an AI concierge, service upsell engine, and analytics layer for guest touchpoints across the property.";
     }
 
     return lang === "pl"
-      ? "LUMEVIO łączy kampanie NFC, globalną sieć interakcji i AI, aby podnieść konwersję oraz wartość klienta w świecie offline."
-      : "LUMEVIO combines NFC campaigns, a global interaction network, and AI to increase conversion and customer value across offline touchpoints.";
+      ? "LUMEVIO zamienia fizyczne punkty kontaktu w mierzalny kanał danych i sprzedaży. Łączymy NFC, dashboard analityczny i AI rekomendacje, aby pokazać co działa offline i jak to optymalizować."
+      : "LUMEVIO turns physical touchpoints into a measurable data and sales channel. We combine NFC, an analytics dashboard, and AI recommendations to show what works offline and how to optimize it.";
   };
 
   const sendChat = (event?: FormEvent, preset?: string) => {
@@ -1077,8 +1198,8 @@ export default function App() {
     setChatInput("");
     setMessages((previous) => [
       ...previous,
-      { id: crypto.randomUUID(), role: "user", text: userText },
-      { id: crypto.randomUUID(), role: "assistant", text: askAssistant(userText) },
+      { id: createId(), role: "user", text: userText },
+      { id: createId(), role: "assistant", text: askAssistant(userText) },
     ]);
   };
 
@@ -1140,6 +1261,7 @@ export default function App() {
               onClick={() => setMobileOpen((prev) => !prev)}
               className="inline-flex rounded-full border border-slate-400/40 p-2 lg:hidden"
               aria-label="Open navigation"
+              aria-expanded={mobileOpen}
             >
               {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
             </button>
@@ -1232,12 +1354,15 @@ export default function App() {
 
               <div className="flex flex-wrap gap-4">
                 <a
-                  href="#products"
-                  className="rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-7 py-3 font-semibold text-slate-950"
+                  href="#pilot"
+                  className="rounded-full bg-gradient-to-r from-fuchsia-500 via-violet-500 to-cyan-400 px-7 py-3 font-semibold text-slate-950 shadow-lg shadow-fuchsia-500/30"
                 >
                   {t.hero.ctaPrimary}
                 </a>
-                <a href="#contact" className="rounded-full border border-white/60 px-7 py-3 font-semibold text-white">
+                <a
+                  href="#experience"
+                  className="rounded-full border border-white/60 bg-white/5 px-7 py-3 font-semibold text-white transition hover:bg-white/10"
+                >
                   {t.hero.ctaSecondary}
                 </a>
               </div>
@@ -1253,9 +1378,9 @@ export default function App() {
                 <FloatingCloud3D />
                 <div className="grid gap-4 sm:grid-cols-3">
                   {[
-                    { icon: ShieldCheck, label: "Enterprise-ready" },
-                    { icon: Globe2, label: "Global rollout" },
-                    { icon: Zap, label: "Real-time actions" },
+                    { icon: ShieldCheck, label: lang === "pl" ? "Enterprise-ready" : "Enterprise-ready" },
+                    { icon: Globe2, label: lang === "pl" ? "Gotowe do rolloutu" : "Global rollout" },
+                    { icon: Zap, label: lang === "pl" ? "Decyzje w czasie rzeczywistym" : "Real-time actions" },
                   ].map((item) => (
                     <div
                       key={item.label}
@@ -1291,7 +1416,78 @@ export default function App() {
           </div>
         </section>
 
-        <section id="products" className="mx-auto max-w-7xl px-6 py-24 sm:py-28">
+        <section id="pilot" className="mx-auto max-w-7xl px-6 py-6 sm:py-8">
+          <div className="overflow-hidden rounded-[36px] border border-slate-200/70 bg-gradient-to-br from-white via-white to-fuchsia-50 p-6 shadow-[0_30px_100px_-40px_rgba(168,85,247,0.35)] dark:border-white/10 dark:bg-[linear-gradient(135deg,#081120,#0b1422,#11112b)] md:p-10">
+            <motion.div
+              initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+              whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              className="max-w-3xl"
+            >
+              <div className="inline-flex items-center rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.22em] text-cyan-600 dark:text-cyan-200">
+                {t.pilot.badge}
+              </div>
+              <h2 className="mt-6 text-3xl font-semibold tracking-tight sm:text-5xl">{t.pilot.title}</h2>
+              <p className="mt-5 text-base leading-8 text-slate-600 dark:text-slate-300 sm:text-lg">{t.pilot.subtitle}</p>
+            </motion.div>
+
+            <div className="mt-10 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+              <div className="grid gap-4">
+                {t.pilot.steps.map((step) => (
+                  <div
+                    key={step.title}
+                    className="rounded-[24px] border border-slate-200/80 bg-white/80 p-5 shadow-sm dark:border-white/10 dark:bg-[#0b1422]"
+                  >
+                    <div className="text-lg font-semibold">{step.title}</div>
+                    <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{step.text}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="rounded-[28px] border border-white/10 bg-[#081423] p-6 text-white shadow-[0_20px_80px_-30px_rgba(34,211,238,0.25)]">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-fuchsia-400/20 bg-fuchsia-500/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.22em] text-fuchsia-300">
+                  <BarChart3 className="h-3.5 w-3.5" />
+                  Pilot outcomes
+                </div>
+
+                <h3 className="text-2xl font-semibold">
+                  {lang === "pl" ? "Co pokazujemy po 30 dniach" : "What we show after 30 days"}
+                </h3>
+
+                <div className="mt-6 grid gap-3">
+                  {t.pilot.metrics.map((metric, index) => (
+                    <div
+                      key={metric}
+                      className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 p-4"
+                    >
+                      <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 text-xs font-bold text-slate-950">
+                        {index + 1}
+                      </div>
+                      <div className="text-sm leading-6 text-white/80">{metric}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <a
+                    href="#contact"
+                    className="rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950"
+                  >
+                    {t.pilot.ctaPrimary}
+                  </a>
+                  <a
+                    href="#contact"
+                    className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                  >
+                    {t.pilot.ctaSecondary}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="products" className="relative mx-auto max-w-7xl px-6 py-24 sm:py-28">
           <motion.div
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
             whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
@@ -1353,7 +1549,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="experience" className="bg-[#05051b] py-20 text-white sm:py-24">
+        <section id="experience" className="bg-[linear-gradient(180deg,#040617,#060c21,#05051b)] py-20 text-white sm:py-24">
           <div className="mx-auto max-w-7xl px-6">
             <motion.div
               initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
@@ -1395,7 +1591,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="industries" className="relative overflow-hidden bg-[#05051b] py-20 text-white sm:py-24">
+        <section id="industries" className="relative overflow-hidden bg-[linear-gradient(180deg,#05051b,#091020,#05051b)] py-20 text-white sm:py-24">
           <div className="relative mx-auto max-w-7xl px-6">
             <motion.div
               initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
@@ -1531,7 +1727,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="analytics" className="relative overflow-hidden bg-[#05051b] py-20 text-white sm:py-24">
+        <section id="analytics" className="relative overflow-hidden bg-[linear-gradient(180deg,#05051b,#061126,#05051b)] py-20 text-white sm:py-24">
           <div className="relative mx-auto max-w-7xl px-6">
             <motion.div
               initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
@@ -1686,66 +1882,53 @@ export default function App() {
       </main>
 
       <section className="mx-auto max-w-5xl px-6 py-20 sm:py-24">
-  <div className="rounded-[32px] border border-slate-200 bg-white p-6 dark:border-white/10 dark:bg-[#081120] md:p-10">
-    <h2 className="text-3xl font-semibold tracking-tight sm:text-5xl">
-      LUMEVIO – NFC retail, smart shelf i phygital dla nowoczesnego handlu
-    </h2>
+        <div className="rounded-[32px] border border-slate-200 bg-white p-6 dark:border-white/10 dark:bg-[#081120] md:p-10">
+          <h2 className="text-3xl font-semibold tracking-tight sm:text-5xl">
+            LUMEVIO – Google Analytics dla świata fizycznego
+          </h2>
 
-    <p className="mt-6 text-base leading-8 text-slate-600 dark:text-slate-300">
-      LUMEVIO to platforma SaaS tworzona dla firm, które chcą rozwijać nowoczesny
-      <strong> NFC retail</strong>, projektować interaktywne doświadczenia zakupowe
-      i mierzyć efektywność działań offline. Łączymy technologię NFC, analitykę
-      offline, automatyzację oraz AI, aby zamienić fizyczne punkty kontaktu z
-      klientem w mierzalny kanał sprzedaży. Dzięki temu retail, marki premium i
-      nowoczesne organizacje mogą lepiej rozumieć zachowania użytkowników i
-      szybciej optymalizować konwersję.
-    </p>
+          <p className="mt-6 text-base leading-8 text-slate-600 dark:text-slate-300">
+            LUMEVIO to platforma SaaS dla firm, które chcą mierzyć i optymalizować świat offline tak precyzyjnie, jak
+            mierzą kanały cyfrowe. Łączymy <strong>NFC retail</strong>, analitykę offline, automatyzację i AI, aby
+            każdy produkt, półka, stand oraz materiał POS mógł stać się źródłem danych, leadów i sprzedaży.
+          </p>
 
-    <h3 className="mt-10 text-xl font-semibold sm:text-2xl">
-      Jak działa NFC retail w LUMEVIO
-    </h3>
-    <p className="mt-4 text-base leading-8 text-slate-600 dark:text-slate-300">
-      W modelu <strong>NFC retail</strong> klient zbliża telefon do punktu
-      interakcji umieszczonego na półce, produkcie, standzie lub materiale POS.
-      W jednym ruchu może otworzyć landing page, ofertę, formularz leadowy,
-      aktywację promocji albo treść dopasowaną do konkretnej kampanii. LUMEVIO
-      pozwala zarządzać tymi scenariuszami z jednej platformy, analizować wyniki
-      i porównywać skuteczność różnych ekspozycji w sklepie.
-    </p>
+          <h3 className="mt-10 text-xl font-semibold sm:text-2xl">
+            Jak działa analityka offline w LUMEVIO
+          </h3>
+          <p className="mt-4 text-base leading-8 text-slate-600 dark:text-slate-300">
+            W modelu <strong>NFC retail</strong> klient zbliża telefon do punktu interakcji na półce, produkcie,
+            standzie lub materiale POS. W jednym ruchu może otworzyć landing page, ofertę, formularz leadowy albo
+            promocję, a system rejestruje źródło interakcji, lokalizację, czas i wynik. Dzięki temu LUMEVIO działa jak
+            warstwa pomiarowa dla fizycznego handlu.
+          </p>
 
-    <h3 className="mt-10 text-xl font-semibold sm:text-2xl">
-      Smart shelf jako nowy kanał sprzedaży
-    </h3>
-    <p className="mt-4 text-base leading-8 text-slate-600 dark:text-slate-300">
-      <strong>Smart shelf</strong> w LUMEVIO to nie tylko interaktywna półka,
-      ale pełny system aktywacji klienta w miejscu zakupu. Technologia może
-      wspierać kampanie produktowe, prezentację benefitów, kupony, onboarding,
-      lead capture oraz analizę decyzji podejmowanych bezpośrednio przy półce.
-      Dzięki temu sklep zyskuje nie tylko nowoczesny efekt phygital, ale także
-      realne dane o tym, które punkty styku generują zaangażowanie i sprzedaż.
-    </p>
+          <h3 className="mt-10 text-xl font-semibold sm:text-2xl">
+            Smart shelf jako mierzalny kanał sprzedaży
+          </h3>
+          <p className="mt-4 text-base leading-8 text-slate-600 dark:text-slate-300">
+            <strong>Smart shelf</strong> w LUMEVIO to nie tylko interaktywna półka, ale pełny system aktywacji klienta
+            w miejscu zakupu. Rozwiązanie wspiera kampanie produktowe, prezentację benefitów, kupony, onboarding i lead
+            capture, a jednocześnie pokazuje, które miejsca i komunikaty generują największe zaangażowanie oraz wzrost
+            konwersji.
+          </p>
 
-    <h3 className="mt-10 text-xl font-semibold sm:text-2xl">
-      Phygital i offline analytics w jednej platformie
-    </h3>
-    <p className="mt-4 text-base leading-8 text-slate-600 dark:text-slate-300">
-      <strong>Phygital</strong> to dziś połączenie świata fizycznego i cyfrowego
-      w jednym doświadczeniu klienta. LUMEVIO rozwija ten model, dostarczając
-      platformę do zarządzania interakcjami NFC, treściami, testami kampanii i
-      analityką offline. Marki mogą mierzyć kliknięcia, aktywacje, lokalizacje,
-      czas interakcji oraz ścieżki użytkownika, a następnie wykorzystać AI do
-      poprawy treści, CTA i wyników biznesowych.
-    </p>
+          <h3 className="mt-10 text-xl font-semibold sm:text-2xl">
+            Phygital, AI i insighty w jednej platformie
+          </h3>
+          <p className="mt-4 text-base leading-8 text-slate-600 dark:text-slate-300">
+            <strong>Phygital</strong> w LUMEVIO oznacza połączenie świata fizycznego i cyfrowego w jednym doświadczeniu
+            klienta. Platforma zarządza interakcjami NFC, treściami, testami kampanii i analityką offline, a warstwa AI
+            generuje rekomendacje dotyczące treści, CTA, placementu i kolejnych działań wdrożeniowych.
+          </p>
 
-    <p className="mt-6 text-base leading-8 text-slate-600 dark:text-slate-300">
-      Jeśli Twoja firma szuka rozwiązania łączącego <strong>NFC retail</strong>,
-      <strong> smart shelf</strong>, <strong>phygital</strong> i
-      <strong> offline analytics</strong>, LUMEVIO tworzy infrastrukturę, która
-      pomaga zwiększać sprzedaż, generować leady i budować nową jakość doświadczeń
-      w handlu stacjonarnym.
-    </p>
-  </div>
-</section>
+          <p className="mt-6 text-base leading-8 text-slate-600 dark:text-slate-300">
+            Jeśli Twoja firma szuka rozwiązania łączącego <strong>NFC retail</strong>, <strong>smart shelf</strong>,
+            <strong> phygital</strong> i <strong>offline analytics</strong>, LUMEVIO dostarcza kompletny system do
+            aktywacji klienta, pomiaru zachowań i optymalizacji sprzedaży w świecie fizycznym.
+          </p>
+        </div>
+      </section>
 
       <footer className="border-t border-slate-200 bg-[#f5f5f7] text-slate-700 dark:border-white/10 dark:bg-[#050512] dark:text-slate-300">
         <div className="mx-auto max-w-7xl px-6 py-10">
@@ -1836,7 +2019,7 @@ export default function App() {
                       const target = Object.entries(sectionHrefByQuickIntent).find(([intent]) =>
                         key.includes(intent)
                       )?.[1];
-                      if (target) document.querySelector(target)?.scrollIntoView({ behavior: "smooth" });
+                      if (target) scrollToHash(target);
                     }}
                     className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/80 transition hover:border-cyan-300/30 hover:text-cyan-200"
                   >

@@ -5,70 +5,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-    <title>LUMEVIO – SaaS NFC i AI dla retailu | Zwiększ sprzedaż offline</title>
+    <title>LUMEVIO – Google Analytics dla świata fizycznego</title>
 
-    <!-- SEO -->
     <meta
       name="description"
-      content="LUMEVIO to platforma SaaS NFC dla retailu, która zwiększa sprzedaż offline, angażuje klientów i analizuje ich zachowanie w czasie rzeczywistym."
+      content="LUMEVIO to platforma retail intelligence, która zamienia półki, produkty i materiały POS w mierzalne punkty interakcji. NFC, analityka offline i AI dla wzrostu sprzedaży."
     />
     <meta name="author" content="LUMEVIO" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
     <meta name="googlebot" content="index, follow" />
     <meta name="theme-color" content="#05051b" />
-    <meta name="format-detection" content="telephone=no, email=no, address=no" />
+    <meta name="format-detection" content="telephone=no" />
 
-    <!-- Canonical -->
     <link rel="canonical" href="https://www.lumevio.pl/" />
     <link rel="alternate" hreflang="pl" href="https://www.lumevio.pl/" />
     <link rel="alternate" hreflang="x-default" href="https://www.lumevio.pl/" />
 
-    <!-- Icons -->
-    <link rel="icon" href="/images/logo.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
     <link rel="apple-touch-icon" href="/images/logo.png" />
 
-    <!-- Performance -->
     <link rel="preload" as="image" href="/images/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Social verification -->
     <link rel="me" href="https://www.linkedin.com/company/lumevio/" />
     <link rel="me" href="https://www.facebook.com/profile.php?id=61575772570418" />
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pl_PL" />
     <meta property="og:site_name" content="LUMEVIO" />
-    <meta property="og:title" content="LUMEVIO – NFC, Smart Retail i AI dla sprzedaży offline" />
+    <meta property="og:title" content="LUMEVIO – Google Analytics dla świata fizycznego" />
     <meta
       property="og:description"
-      content="Zamień półkę sklepową w kanał sprzedaży. LUMEVIO łączy NFC i AI, aby zwiększać konwersję i mierzyć zachowania klientów offline."
+      content="Zwiększ sprzedaż przy półce i zobacz dokładnie, co działa. LUMEVIO łączy NFC, analitykę offline i AI dla retailu."
     />
     <meta property="og:url" content="https://www.lumevio.pl/" />
     <meta property="og:image" content="https://www.lumevio.pl/images/og-cover.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="LUMEVIO – NFC Smart Retail Platform" />
+    <meta property="og:image:alt" content="LUMEVIO – Retail Intelligence Platform" />
 
-    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="LUMEVIO – NFC i AI dla retailu" />
+    <meta name="twitter:title" content="LUMEVIO – Retail Intelligence Platform" />
     <meta
       name="twitter:description"
-      content="Zwiększ sprzedaż offline dzięki NFC i AI. Analizuj zachowania klientów w czasie rzeczywistym."
+      content="NFC, smart shelf, offline analytics i AI dla nowoczesnego retailu."
     />
     <meta name="twitter:image" content="https://www.lumevio.pl/images/og-cover.png" />
 
-    <!-- STRUCTURED DATA (ważne pod AI i Google) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -79,7 +71,7 @@
         "url": "https://www.lumevio.pl/",
         "logo": "https://www.lumevio.pl/images/logo.png",
         "image": "https://www.lumevio.pl/images/og-cover.png",
-        "description": "Platforma SaaS NFC i AI dla retailu zwiększająca sprzedaż offline i analizująca zachowania klientów.",
+        "description": "Platforma retail intelligence wykorzystująca NFC, analitykę offline i AI do zwiększania sprzedaży oraz mierzenia interakcji w świecie fizycznym.",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -92,7 +84,6 @@
       }
     </script>
 
-    <!-- ORGANIZATION (brand authority) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -112,11 +103,81 @@
         }
       }
     </script>
+
+    <style>
+      html {
+        background: #02020b;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        min-height: 100vh;
+        background: #02020b;
+        color: #ffffff;
+        font-family: "Inter", sans-serif;
+      }
+
+      #root {
+        min-height: 100vh;
+      }
+
+      .app-loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at top, rgba(217, 70, 239, 0.12), transparent 30%),
+          radial-gradient(circle at bottom, rgba(34, 211, 238, 0.1), transparent 30%),
+          #02020b;
+        color: white;
+        text-align: center;
+        padding: 24px;
+      }
+
+      .app-loading__inner {
+        max-width: 520px;
+      }
+
+      .app-loading__logo {
+        width: 88px;
+        height: 88px;
+        object-fit: contain;
+        margin-bottom: 20px;
+      }
+
+      .app-loading__title {
+        margin: 0 0 12px;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+      }
+
+      .app-loading__text {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.72);
+        line-height: 1.7;
+        font-size: 15px;
+      }
+    </style>
   </head>
 
   <body>
     <noscript>Do poprawnego działania strony LUMEVIO wymagane jest włączenie JavaScript.</noscript>
-    <div id="root"></div>
+
+    <div id="root">
+      <div class="app-loading">
+        <div class="app-loading__inner">
+          <img class="app-loading__logo" src="/images/logo.png" alt="LUMEVIO" />
+          <h1 class="app-loading__title">LUMEVIO</h1>
+          <p class="app-loading__text">
+            Ładowanie platformy retail intelligence...
+          </p>
+        </div>
+      </div>
+    </div>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
