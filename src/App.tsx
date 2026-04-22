@@ -1,25 +1,4 @@
-import { FormEvent, MouseEvent, useEffect, useMemo, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import {
-  ArrowRight,
-  BarChart3,
-  CheckCircle2,
-  Globe2,
-  Mail,
-  Menu,
-  MessageCircle,
-  Radio,
-  ScanLine,
-  ShieldCheck,
-  Sparkles,
-  Store,
-  TabletSmartphone,
-  TrendingUp,
-  UserRound,
-  Users,
-  X,
-  Zap,
-} from "lucide-react";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 
 type Lang = "pl" | "en";
 type Theme = "dark" | "light";
@@ -48,10 +27,7 @@ const COMPANY = {
   brand: "LUMEVIO",
   website: "https://www.lumevio.pl",
   phone: "+48 797 009 261",
-  emails: [
-    "hello@lumevio.pl",
-    "contact@lumevio.pl",
-  ] as const,
+  emails: ["hello@lumevio.pl", "contact@lumevio.pl"] as const,
   nip: "6681935834",
   regon: "380004555",
 };
@@ -143,11 +119,6 @@ const copy = {
       title: "Interaktywne experience, które sprzedają",
       subtitle:
         "Wirtualna karta zbliżeniowa, demo półki i warstwa motion pokazują, jak LUMEVIO działa w realnym świecie.",
-      shelf: "Smart shelf demo",
-      trigger: "Zbliż telefon",
-      tap: "Aktywuj tap",
-      live: "Punkt NFC aktywny",
-      labels: ["Treść otwarta", "Lead capture", "Live analytics"],
       sideTitle: "Offline traffic staje się mierzalnym przychodem",
       sidePoints: [
         "Jedno zbliżenie uruchamia landing, ofertę, formularz lub kampanię.",
@@ -392,11 +363,6 @@ const copy = {
       title: "Interactive experiences that sell",
       subtitle:
         "A virtual contactless card, a shelf demo, and a motion layer show how LUMEVIO works in the real world.",
-      shelf: "Smart shelf demo",
-      trigger: "Tap the phone",
-      tap: "Activate tap",
-      live: "NFC point active",
-      labels: ["Content opened", "Lead capture", "Live analytics"],
       sideTitle: "Offline traffic becomes measurable revenue",
       sidePoints: [
         "One tap launches a landing page, offer, form, or campaign.",
@@ -588,6 +554,38 @@ const sectionHrefByQuickIntent: Record<string, string> = {
   ceny: "#roi",
 };
 
+function SectionHeader({
+  badge,
+  title,
+  subtitle,
+  dark = false,
+}: {
+  badge: string;
+  title: string;
+  subtitle: string;
+  dark?: boolean;
+}) {
+  return (
+    <div className="mx-auto max-w-3xl text-center">
+      <div
+        className={`inline-flex items-center rounded-full border px-4 py-2 text-[11px] font-medium uppercase tracking-[0.22em] ${
+          dark
+            ? "border-cyan-300/20 bg-cyan-300/10 text-cyan-200"
+            : "border-fuchsia-500/20 bg-fuchsia-500/5 text-fuchsia-500"
+        }`}
+      >
+        {badge}
+      </div>
+      <h2 className={`mt-6 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl lg:text-5xl ${dark ? "text-white" : ""}`}>
+        {title}
+      </h2>
+      <p className={`mt-5 mx-auto max-w-2xl text-sm leading-7 sm:text-base ${dark ? "text-white/65" : "text-slate-600 dark:text-slate-300"}`}>
+        {subtitle}
+      </p>
+    </div>
+  );
+}
+
 function ContactForm({
   t,
   lang,
@@ -622,146 +620,86 @@ function ContactForm({
     }
   };
 
+  if (status === "success") {
+    return (
+      <div className="rounded-[28px] border border-emerald-500/20 bg-emerald-500/10 p-6 text-white backdrop-blur-xl">
+        <p className="text-sm text-emerald-300">{t.success}</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="relative">
-      {status === "success" ? (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="rounded-[28px] border border-emerald-500/20 bg-emerald-500/10 p-6 text-white backdrop-blur-xl"
+    <form
+      onSubmit={handleSubmit}
+      className="group relative space-y-5 overflow-hidden rounded-[28px] border border-white/10 bg-[#07111f] p-6 backdrop-blur-xl"
+    >
+      <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+        <div className="absolute -top-10 right-[-20px] h-40 w-40 rounded-full bg-cyan-400/10 blur-3xl" />
+        <div className="absolute -bottom-10 left-[-20px] h-40 w-40 rounded-full bg-fuchsia-500/10 blur-3xl" />
+      </div>
+
+      <div className="relative space-y-5">
+        <input
+          required
+          name="name"
+          placeholder={t.name}
+          className="w-full rounded-xl border border-white/10 bg-[#0b1422] px-4 py-3 text-sm text-white outline-none focus:border-cyan-400"
+        />
+        <input
+          required
+          name="email"
+          type="email"
+          placeholder={t.email}
+          className="w-full rounded-xl border border-white/10 bg-[#0b1422] px-4 py-3 text-sm text-white outline-none focus:border-cyan-400"
+        />
+        <input
+          required
+          name="company"
+          placeholder={t.company}
+          className="w-full rounded-xl border border-white/10 bg-[#0b1422] px-4 py-3 text-sm text-white outline-none focus:border-cyan-400"
+        />
+        <textarea
+          required
+          name="message"
+          rows={4}
+          placeholder={t.message}
+          className="w-full rounded-xl border border-white/10 bg-[#0b1422] px-4 py-3 text-sm text-white outline-none focus:border-fuchsia-400"
+        />
+
+        <input
+          type="hidden"
+          name="_subject"
+          value={lang === "pl" ? "Nowe zapytanie ze strony LUMEVIO" : "New inquiry from LUMEVIO website"}
+        />
+
+        <button
+          type="submit"
+          disabled={status === "loading"}
+          className="w-full rounded-xl bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-4 py-3 font-semibold text-[#05051b] transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          <p className="text-sm text-emerald-300">{t.success}</p>
-        </motion.div>
-      ) : (
-        <form
-          onSubmit={handleSubmit}
-          className="group relative space-y-5 overflow-hidden rounded-[28px] border border-white/10 bg-[#07111f] p-6 backdrop-blur-xl"
-        >
-          <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
-            <div className="absolute -top-10 right-[-20px] h-40 w-40 rounded-full bg-cyan-400/10 blur-3xl" />
-            <div className="absolute -bottom-10 left-[-20px] h-40 w-40 rounded-full bg-fuchsia-500/10 blur-3xl" />
+          {status === "loading" ? t.sending : t.send}
+        </button>
+
+        {status === "error" && (
+          <div className="rounded-xl border border-red-400/20 bg-red-400/10 px-4 py-3 text-sm text-red-300">
+            {t.error}
           </div>
+        )}
 
-          <div className="relative space-y-5">
-            <label className="block">
-              <span className="sr-only">{t.name}</span>
-              <input
-                required
-                name="name"
-                placeholder={t.name}
-                className="w-full rounded-xl border border-white/10 bg-[#0b1422] px-4 py-3 text-sm text-white outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
-              />
-            </label>
-
-            <label className="block">
-              <span className="sr-only">{t.email}</span>
-              <input
-                required
-                name="email"
-                type="email"
-                placeholder={t.email}
-                className="w-full rounded-xl border border-white/10 bg-[#0b1422] px-4 py-3 text-sm text-white outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
-              />
-            </label>
-
-            <label className="block">
-              <span className="sr-only">{t.company}</span>
-              <input
-                required
-                name="company"
-                placeholder={t.company}
-                className="w-full rounded-xl border border-white/10 bg-[#0b1422] px-4 py-3 text-sm text-white outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
-              />
-            </label>
-
-            <label className="block">
-              <span className="sr-only">{t.message}</span>
-              <textarea
-                required
-                name="message"
-                rows={4}
-                placeholder={t.message}
-                className="w-full rounded-xl border border-white/10 bg-[#0b1422] px-4 py-3 text-sm text-white outline-none focus:border-fuchsia-400 focus:ring-2 focus:ring-fuchsia-400/30"
-              />
-            </label>
-
-            <input
-              type="hidden"
-              name="_subject"
-              value={lang === "pl" ? "Nowe zapytanie ze strony LUMEVIO" : "New inquiry from LUMEVIO website"}
-            />
-
-            <button
-              type="submit"
-              disabled={status === "loading"}
-              className="w-full rounded-xl bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-4 py-3 font-semibold text-[#05051b] transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60"
-            >
-              {status === "loading" ? t.sending : t.send}
-            </button>
-
-            {status === "error" && (
-              <div className="rounded-xl border border-red-400/20 bg-red-400/10 px-4 py-3 text-sm text-red-300">
-                {t.error}
-              </div>
-            )}
-
-            <div className="text-xs text-white/40">{t.info}</div>
-          </div>
-        </form>
-      )}
-    </div>
+        <div className="text-xs text-white/40">{t.info}</div>
+      </div>
+    </form>
   );
 }
 
-function SmartShelfDemo({
-  labels,
-  shelf,
-  trigger,
-  live,
-  tap,
-  lang,
-}: {
-  labels: readonly string[];
-  shelf: string;
-  trigger: string;
-  live: string;
-  tap: string;
-  lang: Lang;
-}) {
-  const [active, setActive] = useState(false);
-  const shouldReduceMotion = useReducedMotion();
-
-  useEffect(() => {
-    if (!active) return;
-    const timeout = setTimeout(() => setActive(false), 2800);
-    return () => clearTimeout(timeout);
-  }, [active]);
-
+function SmartShelfDemo({ lang }: { lang: Lang }) {
   return (
     <div className="relative overflow-hidden rounded-[40px] border border-white/10 bg-[#050b18] p-6 shadow-[0_30px_120px_-30px_rgba(34,211,238,0.22)] md:p-8">
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {!shouldReduceMotion && (
-          <>
-            <motion.div
-              animate={{ x: [0, 50, -40, 0], y: [0, -20, 25, 0] }}
-              transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-24 right-[-8%] h-[340px] w-[340px] rounded-full bg-cyan-400/20 blur-[120px]"
-            />
-            <motion.div
-              animate={{ x: [0, -40, 30, 0], y: [0, 20, -20, 0] }}
-              transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute bottom-[-100px] left-[-8%] h-[340px] w-[340px] rounded-full bg-fuchsia-500/20 blur-[120px]"
-            />
-          </>
-        )}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.035),transparent_60%)]" />
-      </div>
-
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.035),transparent_60%)]" />
       <div className="relative grid items-center gap-10 lg:grid-cols-[1.02fr_0.98fr]">
         <div>
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-xs font-medium text-cyan-200">
-            <Store className="h-3.5 w-3.5" />
-            {shelf}
+            Smart shelf demo
           </div>
 
           <h3 className="max-w-xl text-3xl font-semibold leading-tight text-white sm:text-4xl">
@@ -774,41 +712,17 @@ function SmartShelfDemo({
               : "LUMEVIO connects the product, the NFC touchpoint, and the phone screen into one scenario: experience activation, landing page opening, lead capture, and real-time measurement."}
           </p>
 
-          <div className="mt-7 flex flex-wrap gap-3">
-            <button
-              onClick={() => setActive(true)}
-              type="button"
-              className="inline-flex items-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:scale-[1.02]"
-            >
-              <ScanLine className="h-4 w-4" />
-              {trigger}
-            </button>
-
-            <div className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/75 backdrop-blur-xl">
-              <ShieldCheck className="h-4 w-4 text-cyan-300" />
-              Enterprise-ready flow
-            </div>
-          </div>
-
           <div className="mt-8 grid gap-3 md:grid-cols-3">
-            {labels.map((label, idx) => (
-              <motion.div
-                key={label}
-                animate={shouldReduceMotion ? {} : { opacity: active ? 1 : 0.78, y: active ? 0 : 6 }}
-                transition={{ delay: idx * 0.12 }}
-                className="rounded-[22px] border border-white/10 bg-white/5 p-4 backdrop-blur-xl"
-              >
-                <div className="mb-3 inline-flex rounded-xl border border-cyan-300/20 bg-cyan-300/10 p-2 text-cyan-200">
-                  {idx === 0 ? <Globe2 className="h-4 w-4" /> : idx === 1 ? <UserRound className="h-4 w-4" /> : <BarChart3 className="h-4 w-4" />}
-                </div>
+            {["Treść otwarta", "Lead capture", "Live analytics"].map((label) => (
+              <div key={label} className="rounded-[22px] border border-white/10 bg-white/5 p-4 backdrop-blur-xl">
                 <div className="text-sm font-medium text-white/90">{label}</div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
 
-        <div className="relative min-h-[500px]">
-          <div className="absolute inset-x-0 bottom-4 right-14 rounded-[34px] border border-white/10 bg-white/5 p-5 shadow-[0_20px_80px_-20px_rgba(34,211,238,0.14)] backdrop-blur-xl">
+        <div className="relative min-h-[360px]">
+          <div className="absolute inset-0 rounded-[34px] border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
             <div className="mb-4 flex items-center justify-between text-xs text-white/45">
               <span className="uppercase tracking-[0.24em]">Shelf A / Premium zone</span>
               <span>SKU 29841</span>
@@ -816,142 +730,29 @@ function SmartShelfDemo({
 
             <div className="grid grid-cols-3 gap-3">
               {[1, 2, 3].map((item) => (
-                <div key={item} className="relative rounded-2xl border border-white/10 bg-[#0b1422] p-3 shadow-inner shadow-black/20">
+                <div key={item} className="rounded-2xl border border-white/10 bg-[#0b1422] p-3 shadow-inner shadow-black/20">
                   <div className="h-28 rounded-xl bg-gradient-to-b from-fuchsia-500/20 via-transparent to-cyan-400/20" />
                   <div className="mt-3 h-2 w-16 rounded-full bg-white/20" />
                   <div className="mt-2 h-2 w-10 rounded-full bg-white/10" />
-
                   {item === 2 && (
-                    <>
-                      <motion.div
-                        animate={shouldReduceMotion ? {} : active ? { scale: [1, 1.08, 1], opacity: [0.75, 1, 0.75] } : { scale: 1, opacity: 0.75 }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                        className="relative mt-3 flex items-center justify-center rounded-xl border border-cyan-300/20 bg-cyan-300/10 py-2 text-cyan-200 shadow-[0_0_30px_rgba(34,211,238,0.15)]"
-                      >
-                        <Radio className="h-4 w-4" />
-                      </motion.div>
-
-                      <AnimatePresence>
-                        {active && !shouldReduceMotion &&
-                          [0, 1, 2].map((ring) => (
-                            <motion.div
-                              key={ring}
-                              initial={{ opacity: 0.7, scale: 0.7 }}
-                              animate={{ opacity: 0, scale: 2.2 }}
-                              exit={{ opacity: 0 }}
-                              transition={{ duration: 1.2, repeat: Infinity, delay: ring * 0.22 }}
-                              className="pointer-events-none absolute left-1/2 top-[60%] h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-300/30"
-                            />
-                          ))}
-                      </AnimatePresence>
-                    </>
+                    <div className="mt-3 flex items-center justify-center rounded-xl border border-cyan-300/20 bg-cyan-300/10 py-2 text-cyan-200">
+                      NFC
+                    </div>
                   )}
                 </div>
               ))}
             </div>
-          </div>
 
-          <motion.div
-            animate={shouldReduceMotion ? {} : active ? { x: -36, y: -50, rotate: -10, scale: 1.04 } : { x: 34, y: 8, rotate: -7, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="absolute right-0 top-0 h-[340px] w-[185px] rounded-[40px] border border-white/10 bg-white/10 p-3 shadow-[0_30px_120px_-20px_rgba(0,0,0,0.6)] backdrop-blur-xl"
-          >
-            <div className="relative h-full overflow-hidden rounded-[30px] border border-white/10 bg-[#081423] p-4 text-white">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.10),transparent_35%),radial-gradient(circle_at_bottom,rgba(217,70,239,0.08),transparent_30%)]" />
-
-              <div className="relative mb-4 flex items-center justify-between text-xs text-white/45">
-                <span>14:28</span>
-                <TabletSmartphone className="h-4 w-4 text-cyan-200" />
-              </div>
-
-              <div className="relative mt-8 text-center">
-                <motion.div
-                  animate={shouldReduceMotion ? {} : active ? { scale: [1, 1.18, 1], opacity: [0.8, 1, 0.8] } : { scale: 1 }}
-                  transition={{ duration: 1.1, repeat: Infinity }}
-                  className="relative mx-auto inline-flex rounded-full border border-cyan-300/25 bg-cyan-300/10 p-4 text-cyan-200 shadow-[0_0_40px_rgba(34,211,238,0.18)]"
-                >
-                  <ScanLine className="h-6 w-6" />
-
-                  <AnimatePresence>
-                    {active && !shouldReduceMotion &&
-                      [0, 1, 2].map((ring) => (
-                        <motion.span
-                          key={ring}
-                          initial={{ opacity: 0.6, scale: 0.7 }}
-                          animate={{ opacity: 0, scale: 2.8 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 1.2, repeat: Infinity, delay: ring * 0.18 }}
-                          className="absolute inset-0 rounded-full border border-cyan-300/30"
-                        />
-                      ))}
-                  </AnimatePresence>
-                </motion.div>
-
-                <div className="mt-5 text-sm font-semibold">{active ? live : tap}</div>
-                <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-3 text-left text-xs leading-5 text-white/60 backdrop-blur-xl">
-                  Dynamic landing • Promo • Lead form • Analytics
-                </div>
+            <div className="mt-6 rounded-2xl border border-white/10 bg-[#081423] p-4 text-center text-white">
+              <div className="text-sm font-semibold">{lang === "pl" ? "Punkt NFC aktywny" : "NFC point active"}</div>
+              <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-3 text-left text-xs leading-5 text-white/60">
+                Dynamic landing • Promo • Lead form • Analytics
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>
-  );
-}
-
-function FloatingCloud3D() {
-  const [transform, setTransform] = useState("perspective(2000px) rotateX(0deg) rotateY(0deg) scale(1)");
-  const shouldReduceMotion = useReducedMotion();
-
-  const handleMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (shouldReduceMotion) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateY = ((x - centerX) / centerX) * 14;
-    const rotateX = -((y - centerY) / centerY) * 14;
-    setTransform(`perspective(2000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`);
-  };
-
-  return (
-    <div className="relative flex items-center justify-center py-10" onMouseMove={handleMove} onMouseLeave={() => setTransform("perspective(2000px) rotateX(0deg) rotateY(0deg) scale(1)")}>
-      <div className="relative h-[360px] w-full max-w-[420px] transition-transform duration-200 ease-out" style={{ transform, transformStyle: "preserve-3d" }}>
-        <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(217,70,239,0.26),transparent_45%)] blur-3xl" />
-        <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.22),transparent_55%)] blur-3xl" />
-
-        {!shouldReduceMotion && (
-          <>
-            <motion.div animate={{ rotate: 360 }} transition={{ duration: 16, repeat: Infinity, ease: "linear" }} className="absolute inset-6 rounded-full border border-cyan-300/20" style={{ transform: "translateZ(-20px)" }} />
-            <motion.div animate={{ rotate: -360 }} transition={{ duration: 22, repeat: Infinity, ease: "linear" }} className="absolute inset-12 rounded-full border border-fuchsia-400/20" style={{ transform: "translateZ(-30px)" }} />
-          </>
-        )}
-
-        <motion.img
-          src={visuals.cloud}
-          alt="LUMEVIO Cloud AI"
-          loading="lazy"
-          className="relative z-10 h-full w-full object-contain drop-shadow-[0_0_60px_rgba(168,85,247,0.5)]"
-          animate={shouldReduceMotion ? {} : { y: [0, -10, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          style={{ transform: "translateZ(40px)" }}
-        />
-      </div>
-    </div>
-  );
-}
-
-function SectionHeader({ badge, title, subtitle, dark = false }: { badge: string; title: string; subtitle: string; dark?: boolean }) {
-  return (
-    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} className="mx-auto max-w-3xl text-center">
-      <div className={`inline-flex items-center rounded-full border px-4 py-2 text-[11px] font-medium uppercase tracking-[0.22em] ${dark ? "border-cyan-300/20 bg-cyan-300/10 text-cyan-200" : "border-fuchsia-500/20 bg-fuchsia-500/5 text-fuchsia-500"}`}>
-        {badge}
-      </div>
-      <h2 className={`mt-6 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl lg:text-5xl ${dark ? "text-white" : "text-inherit"}`}>{title}</h2>
-      <p className={`mt-5 mx-auto max-w-2xl text-sm leading-7 sm:text-base ${dark ? "text-white/65" : "text-slate-600 dark:text-slate-300"}`}>{subtitle}</p>
-    </motion.div>
   );
 }
 
@@ -969,7 +770,6 @@ export default function App() {
   const [liveStats, setLiveStats] = useState({ interactions: 1284, locations: 18, leads: 46, engagement: 27 });
   const chatScrollRef = useRef<HTMLDivElement | null>(null);
   const t = copy[lang];
-  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
@@ -979,7 +779,10 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("lumevio-lang", lang);
     document.documentElement.lang = lang;
-    document.title = lang === "pl" ? "LUMEVIO | Infrastruktura, Sieć i AI dla Świata Fizycznego" : "LUMEVIO | Infrastructure, Network and AI for the Physical World";
+    document.title =
+      lang === "pl"
+        ? "LUMEVIO | Infrastruktura, Sieć i AI dla Świata Fizycznego"
+        : "LUMEVIO | Infrastructure, Network and AI for the Physical World";
   }, [lang]);
 
   useEffect(() => {
@@ -987,7 +790,6 @@ export default function App() {
   }, [t.chat.hello]);
 
   useEffect(() => {
-    if (shouldReduceMotion) return;
     const timer = setInterval(() => {
       setLiveStats((prev) => ({
         interactions: prev.interactions + Math.floor(Math.random() * 4),
@@ -997,7 +799,7 @@ export default function App() {
       }));
     }, 2600);
     return () => clearInterval(timer);
-  }, [shouldReduceMotion]);
+  }, []);
 
   useEffect(() => {
     if (!chatOpen || !chatScrollRef.current) return;
@@ -1015,7 +817,10 @@ export default function App() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const productColumns = useMemo<ProductCard[]>(() => [t.products.os, t.products.grid, t.products.ai], [t.products.os, t.products.grid, t.products.ai]);
+  const productColumns = useMemo<ProductCard[]>(
+    () => [t.products.os, t.products.grid, t.products.ai],
+    [t.products.os, t.products.grid, t.products.ai]
+  );
 
   const roi = useMemo(() => {
     const monthly = stores * customers * 30 * basket * (uplift / 100);
@@ -1106,35 +911,33 @@ export default function App() {
               {t.nav.cta}
             </a>
             <button type="button" onClick={() => setMobileOpen((prev) => !prev)} className="inline-flex rounded-full border border-slate-400/40 p-2 lg:hidden" aria-label="Open navigation">
-              {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+              {mobileOpen ? "✕" : "☰"}
             </button>
           </div>
         </div>
 
-        <AnimatePresence>
-          {mobileOpen && (
-            <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="border-t border-white/10 bg-white/95 px-6 py-4 dark:bg-[#02020b]/95 lg:hidden">
-              <div className="flex flex-col gap-3 text-sm">
-                {[
-                  { href: "#products", label: t.nav.products },
-                  { href: "#experience", label: t.nav.experience },
-                  { href: "#industries", label: t.nav.industries },
-                  { href: "#influencers", label: t.nav.influencers },
-                  { href: "#analytics", label: t.nav.analytics },
-                  { href: "#roi", label: t.nav.roi },
-                  { href: "#contact", label: t.nav.contact },
-                ].map((item) => (
-                  <a key={item.href} href={item.href} onClick={() => setMobileOpen(false)} className="rounded-xl px-2 py-2 transition hover:bg-black/5 dark:hover:bg-white/5">
-                    {item.label}
-                  </a>
-                ))}
-                <button type="button" onClick={() => { setChatOpen(true); setMobileOpen(false); }} className="rounded-xl px-2 py-2 text-left transition hover:bg-black/5 dark:hover:bg-white/5">
-                  {t.nav.chat}
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {mobileOpen && (
+          <div className="border-t border-white/10 bg-white/95 px-6 py-4 dark:bg-[#02020b]/95 lg:hidden">
+            <div className="flex flex-col gap-3 text-sm">
+              {[
+                { href: "#products", label: t.nav.products },
+                { href: "#experience", label: t.nav.experience },
+                { href: "#industries", label: t.nav.industries },
+                { href: "#influencers", label: t.nav.influencers },
+                { href: "#analytics", label: t.nav.analytics },
+                { href: "#roi", label: t.nav.roi },
+                { href: "#contact", label: t.nav.contact },
+              ].map((item) => (
+                <a key={item.href} href={item.href} onClick={() => setMobileOpen(false)} className="rounded-xl px-2 py-2 transition hover:bg-black/5 dark:hover:bg-white/5">
+                  {item.label}
+                </a>
+              ))}
+              <button type="button" onClick={() => { setChatOpen(true); setMobileOpen(false); }} className="rounded-xl px-2 py-2 text-left transition hover:bg-black/5 dark:hover:bg-white/5">
+                {t.nav.chat}
+              </button>
+            </div>
+          </div>
+        )}
       </header>
 
       <main id="home" className="overflow-hidden">
@@ -1143,9 +946,8 @@ export default function App() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#040019]/90 via-[#040019]/80 to-[#040019]/40" />
 
           <div className="relative mx-auto grid min-h-[calc(100vh-7rem)] max-w-7xl items-center gap-10 px-6 lg:grid-cols-[1.05fr_0.95fr]">
-            <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }} animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="max-w-3xl space-y-8">
+            <div className="max-w-3xl space-y-8">
               <div className="inline-flex items-center gap-2 rounded-full border border-fuchsia-400/20 bg-fuchsia-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-fuchsia-300">
-                <Sparkles className="h-3.5 w-3.5" />
                 {t.hero.badge}
               </div>
 
@@ -1175,30 +977,38 @@ export default function App() {
                   {t.hero.ctaSecondary}
                 </a>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, x: 30 }} animate={shouldReduceMotion ? {} : { opacity: 1, x: 0 }} transition={{ duration: 0.9 }} className="relative">
+            <div className="relative">
               <div className="grid gap-6">
-                <FloatingCloud3D />
+                <div className="relative flex items-center justify-center py-10">
+                  <div className="relative h-[360px] w-full max-w-[420px]">
+                    <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(217,70,239,0.26),transparent_45%)] blur-3xl" />
+                    <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.22),transparent_55%)] blur-3xl" />
+                    <img
+                      src={visuals.cloud}
+                      alt="LUMEVIO Cloud AI"
+                      loading="lazy"
+                      className="relative z-10 h-full w-full object-contain drop-shadow-[0_0_60px_rgba(168,85,247,0.5)]"
+                    />
+                  </div>
+                </div>
+
                 <div className="rounded-[28px] border border-white/10 bg-white/5 p-5 text-white backdrop-blur-xl">
                   <div className="text-[11px] uppercase tracking-[0.22em] text-cyan-200/80">LUMEVIO Platform</div>
                   <h3 className="mt-3 text-xl font-semibold tracking-[-0.02em]">{t.hero.panelTitle}</h3>
                   <p className="mt-3 text-sm leading-6 text-white/65">{t.hero.panelText}</p>
                 </div>
+
                 <div className="grid gap-4 sm:grid-cols-3">
-                  {[
-                    { icon: ShieldCheck, label: "Enterprise-ready" },
-                    { icon: Globe2, label: "Global rollout" },
-                    { icon: Zap, label: "Real-time actions" },
-                  ].map((item) => (
-                    <div key={item.label} className="rounded-[24px] border border-white/10 bg-white/5 p-4 text-white backdrop-blur-xl">
-                      <item.icon className="mb-3 h-5 w-5 text-cyan-300" />
-                      <div className="text-sm font-medium">{item.label}</div>
+                  {["Enterprise-ready", "Global rollout", "Real-time actions"].map((item) => (
+                    <div key={item} className="rounded-[24px] border border-white/10 bg-white/5 p-4 text-white backdrop-blur-xl">
+                      <div className="text-sm font-medium">{item}</div>
                     </div>
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -1211,7 +1021,6 @@ export default function App() {
             <div className="md:col-span-2 grid gap-4 md:grid-cols-3">
               {t.trust.points.map((point) => (
                 <div key={point} className="rounded-[24px] border border-slate-200/70 bg-slate-50 p-5 dark:border-white/10 dark:bg-[#0b1422]">
-                  <CheckCircle2 className="mb-3 h-5 w-5 text-cyan-400" />
                   <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">{point}</p>
                 </div>
               ))}
@@ -1223,7 +1032,7 @@ export default function App() {
           <SectionHeader badge="LUMEVIO Ecosystem" title={t.products.title} subtitle={t.products.subtitle} />
           <div className="mt-14 grid gap-8 lg:grid-cols-3">
             {productColumns.map((product, index) => (
-              <motion.article key={product.name} initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: index * 0.12, duration: 0.55 }} className="group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white/90 shadow-[0_20px_80px_-30px_rgba(168,85,247,0.35)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_30px_100px_-30px_rgba(34,211,238,0.28)] dark:border-white/10 dark:bg-[#0a0a1d]/95">
+              <article key={product.name} className="group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white/90 shadow-[0_20px_80px_-30px_rgba(168,85,247,0.35)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_30px_100px_-30px_rgba(34,211,238,0.28)] dark:border-white/10 dark:bg-[#0a0a1d]/95">
                 <div className="overflow-hidden">
                   <img src={product.image} alt={product.name} className="h-56 w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
                 </div>
@@ -1248,7 +1057,7 @@ export default function App() {
                     ))}
                   </div>
                 </div>
-              </motion.article>
+              </article>
             ))}
           </div>
         </section>
@@ -1259,7 +1068,6 @@ export default function App() {
             <div className="mt-10 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
               <div className="rounded-[32px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl md:p-8">
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs font-medium text-cyan-200">
-                  <Sparkles className="h-3.5 w-3.5" />
                   Why it matters
                 </div>
                 <h3 className="text-3xl font-semibold leading-tight text-white">{t.experience.sideTitle}</h3>
@@ -1271,7 +1079,7 @@ export default function App() {
                   ))}
                 </div>
               </div>
-              <SmartShelfDemo labels={t.experience.labels} shelf={t.experience.shelf} trigger={t.experience.trigger} tap={t.experience.tap} live={t.experience.live} lang={lang} />
+              <SmartShelfDemo lang={lang} />
             </div>
           </div>
         </section>
@@ -1281,7 +1089,7 @@ export default function App() {
             <SectionHeader badge={t.industries.badge} title={t.industries.title} subtitle={t.industries.subtitle} dark />
             <div className="mt-14 grid gap-8 lg:grid-cols-3">
               {t.industries.items.map((item, index) => (
-                <motion.article key={item.name} initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: index * 0.12, duration: 0.55 }} whileHover={shouldReduceMotion ? undefined : { y: -8 }} className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-white/5 shadow-[0_20px_80px_-30px_rgba(34,211,238,0.15)] backdrop-blur-xl">
+                <article key={item.name} className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-white/5 shadow-[0_20px_80px_-30px_rgba(34,211,238,0.15)] backdrop-blur-xl">
                   <div className="overflow-hidden">
                     <img src={item.image} alt={item.name} className="h-60 w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
                   </div>
@@ -1307,10 +1115,9 @@ export default function App() {
                     </div>
                     <button type="button" className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white transition hover:border-cyan-300/30 hover:text-cyan-200">
                       {t.industries.cta}
-                      <ArrowRight className="h-4 w-4" />
                     </button>
                   </div>
-                </motion.article>
+                </article>
               ))}
             </div>
           </div>
@@ -1325,7 +1132,7 @@ export default function App() {
           <div className="relative mx-auto max-w-7xl px-6">
             <SectionHeader badge={t.influencerSection.badge} title={t.influencerSection.title} subtitle={t.influencerSection.subtitle} dark />
             <div className="mt-14 grid gap-8 xl:grid-cols-[1.05fr_0.95fr]">
-              <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} className="rounded-[32px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl md:p-8">
+              <div className="rounded-[32px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl md:p-8">
                 <div className="mb-6 flex items-center justify-between gap-4">
                   <div>
                     <div className="text-[11px] uppercase tracking-[0.22em] text-cyan-200/80">{lang === "pl" ? "Program współpracy" : "Partnership program"}</div>
@@ -1343,8 +1150,8 @@ export default function App() {
                     </div>
                   ))}
                 </div>
-              </motion.div>
-              <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} className="space-y-6">
+              </div>
+              <div className="space-y-6">
                 <div className="rounded-[32px] border border-cyan-300/10 bg-gradient-to-br from-[#0a1220] to-[#07111f] p-6 shadow-[0_30px_100px_-40px_rgba(34,211,238,0.28)] md:p-8">
                   <div className="text-[11px] uppercase tracking-[0.22em] text-fuchsia-300/80">{lang === "pl" ? "Dlaczego warto" : "Why join"}</div>
                   <h3 className="mt-2 text-2xl font-semibold tracking-[-0.02em]">{t.influencerSection.benefitsTitle}</h3>
@@ -1371,14 +1178,22 @@ export default function App() {
                   <div className="rounded-[28px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
                     <div className="text-[11px] uppercase tracking-[0.22em] text-cyan-200/80">{t.influencerSection.statLabel}</div>
                     <div className="mt-4 text-2xl font-semibold tracking-[-0.02em]">{t.influencerSection.statValue}</div>
-                    <p className="mt-4 text-sm leading-6 text-white/65">{lang === "pl" ? "Sekcja influencerów prowadzi do tej samej zakładki kontaktowej, dzięki czemu cały ruch spina się w jeden lejek kontaktowy." : "The influencer section leads to the same contact section, keeping all inbound traffic inside one clear contact funnel."}</p>
+                    <p className="mt-4 text-sm leading-6 text-white/65">
+                      {lang === "pl"
+                        ? "Sekcja influencerów prowadzi do tej samej zakładki kontaktowej, dzięki czemu cały ruch spina się w jeden lejek kontaktowy."
+                        : "The influencer section leads to the same contact section, keeping all inbound traffic inside one clear contact funnel."}
+                    </p>
                     <div className="mt-6 flex flex-wrap gap-3">
-                      <a href="#contact" className="rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950">{t.influencerSection.ctaPrimary}</a>
-                      <a href="mailto:partnership@lumevio.pl?subject=Współpraca%20influencerska%20LUMEVIO" className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white">{t.influencerSection.ctaSecondary}</a>
+                      <a href="#contact" className="rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950">
+                        {t.influencerSection.ctaPrimary}
+                      </a>
+                      <a href="mailto:partnership@lumevio.pl?subject=Współpraca%20influencerska%20LUMEVIO" className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white">
+                        {t.influencerSection.ctaSecondary}
+                      </a>
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>
@@ -1408,24 +1223,15 @@ export default function App() {
             </div>
             <div className="grid gap-4">
               <div className="rounded-[24px] border border-white/10 bg-[#081423] p-5">
-                <div className="mb-2 flex items-center gap-2 text-sm text-cyan-200">
-                  <BarChart3 className="h-4 w-4" />
-                  {t.roi.monthly}
-                </div>
+                <div className="mb-2 flex items-center gap-2 text-sm text-cyan-200">{t.roi.monthly}</div>
                 <div className="text-3xl font-semibold text-white">{formatCurrency(roi.monthly)}</div>
               </div>
               <div className="rounded-[24px] border border-white/10 bg-[#081423] p-5">
-                <div className="mb-2 flex items-center gap-2 text-sm text-cyan-200">
-                  <TrendingUp className="h-4 w-4" />
-                  {t.roi.yearly}
-                </div>
+                <div className="mb-2 flex items-center gap-2 text-sm text-cyan-200">{t.roi.yearly}</div>
                 <div className="text-3xl font-semibold text-white">{formatCurrency(roi.yearly)}</div>
               </div>
               <div className="rounded-[24px] border border-white/10 bg-[#081423] p-5">
-                <div className="mb-2 flex items-center gap-2 text-sm text-cyan-200">
-                  <MessageCircle className="h-4 w-4" />
-                  {t.roi.interactions}
-                </div>
+                <div className="mb-2 flex items-center gap-2 text-sm text-cyan-200">{t.roi.interactions}</div>
                 <div className="text-3xl font-semibold text-white">{Math.round(roi.interactions).toLocaleString(lang === "pl" ? "pl-PL" : "en-US")}</div>
               </div>
             </div>
@@ -1436,26 +1242,21 @@ export default function App() {
           <div className="relative mx-auto max-w-7xl px-6">
             <SectionHeader badge="LUMEVIO Intelligence Layer" title={t.analytics.title} subtitle={t.analytics.subtitle} dark />
             <div className="mt-8 overflow-hidden rounded-[24px] border border-cyan-300/20 bg-cyan-300/10 px-4 py-3 text-sm text-cyan-100 backdrop-blur-xl">
-              <motion.div animate={shouldReduceMotion ? {} : { x: ["0%", "-12%", "0%"] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} className="whitespace-nowrap">
-                {t.analytics.ticker}
-              </motion.div>
+              <div className="whitespace-nowrap">{t.analytics.ticker}</div>
             </div>
             <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {[
-                { label: t.analytics.cards[0], value: liveStats.interactions, icon: Radio },
-                { label: t.analytics.cards[1], value: liveStats.locations, icon: Globe2 },
-                { label: t.analytics.cards[2], value: liveStats.leads, icon: UserRound },
-                { label: t.analytics.cards[3], value: `${liveStats.engagement}%`, icon: TrendingUp },
-              ].map((card, index) => (
-                <motion.div key={card.label} initial={shouldReduceMotion ? {} : { opacity: 0, y: 18 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: index * 0.08 }} className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-[#081120] p-5 shadow-[0_20px_70px_-25px_rgba(0,0,0,0.55)]">
-                  <div className="mb-3 inline-flex rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-3 text-cyan-200">
-                    <card.icon className="h-5 w-5" />
-                  </div>
+                { label: t.analytics.cards[0], value: liveStats.interactions },
+                { label: t.analytics.cards[1], value: liveStats.locations },
+                { label: t.analytics.cards[2], value: liveStats.leads },
+                { label: t.analytics.cards[3], value: `${liveStats.engagement}%` },
+              ].map((card) => (
+                <div key={card.label} className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-[#081120] p-5 shadow-[0_20px_70px_-25px_rgba(0,0,0,0.55)]">
                   <div className="text-sm text-white/55">{card.label}</div>
-                  <motion.div key={String(card.value)} initial={shouldReduceMotion ? {} : { opacity: 0.4, y: 8 }} animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="mt-2 text-3xl font-semibold tracking-tight text-white">
+                  <div className="mt-2 text-3xl font-semibold tracking-tight text-white">
                     {typeof card.value === "number" ? card.value.toLocaleString(lang === "pl" ? "pl-PL" : "en-US") : card.value}
-                  </motion.div>
-                </motion.div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -1478,7 +1279,7 @@ export default function App() {
         <section id="contact" className="relative overflow-hidden border-t border-white/10 py-24 text-white">
           <div className="relative mx-auto max-w-7xl px-6">
             <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-              <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, x: -30 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, x: 0 }} viewport={{ once: true }} className="space-y-8">
+              <div className="space-y-8">
                 <div>
                   <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-1 text-xs uppercase tracking-widest text-cyan-200">
                     LUMEVIO CONTACT
@@ -1508,17 +1309,16 @@ export default function App() {
                   <div className="grid gap-3 sm:grid-cols-2">
                     {quickEmailList.map((email) => (
                       <a key={email} href={`mailto:${email}`} className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/85 transition hover:border-cyan-300/30 hover:text-cyan-200">
-                        <Mail className="h-4 w-4" />
                         {email}
                       </a>
                     ))}
                   </div>
                 </div>
-              </motion.div>
-              <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, x: 30 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, x: 0 }} viewport={{ once: true }} className="relative">
+              </div>
+              <div className="relative">
                 <div className="absolute inset-0 rounded-[32px] bg-gradient-to-br from-fuchsia-500/10 to-cyan-400/10 blur-2xl" />
                 <ContactForm t={t.contact} lang={lang} />
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>
@@ -1574,54 +1374,52 @@ export default function App() {
       </footer>
 
       <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-        <AnimatePresence>
-          {chatOpen && (
-            <motion.section initial={{ opacity: 0, y: 20, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 20, scale: 0.96 }} className="w-[min(92vw,380px)] rounded-2xl border border-white/20 bg-[#090921]/95 p-4 text-white shadow-2xl shadow-fuchsia-500/20 backdrop-blur">
-              <div className="mb-3 flex items-center justify-between">
-                <p className="font-semibold">{t.chat.title}</p>
-                <button type="button" className="text-xs text-slate-300" onClick={() => setChatOpen(false)}>
-                  {t.chat.close}
+        {chatOpen && (
+          <section className="w-[min(92vw,380px)] rounded-2xl border border-white/20 bg-[#090921]/95 p-4 text-white shadow-2xl shadow-fuchsia-500/20 backdrop-blur">
+            <div className="mb-3 flex items-center justify-between">
+              <p className="font-semibold">{t.chat.title}</p>
+              <button type="button" className="text-xs text-slate-300" onClick={() => setChatOpen(false)}>
+                {t.chat.close}
+              </button>
+            </div>
+            <div className="mb-3 flex flex-wrap gap-2">
+              {t.chat.quick.map((item) => (
+                <button
+                  key={item}
+                  type="button"
+                  onClick={() => {
+                    sendChat(undefined, item);
+                    const key = item.toLowerCase();
+                    const target = Object.entries(sectionHrefByQuickIntent).find(([intent]) => key.includes(intent))?.[1];
+                    if (target) document.querySelector(target)?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/80 transition hover:border-cyan-300/30 hover:text-cyan-200"
+                >
+                  {item}
                 </button>
-              </div>
-              <div className="mb-3 flex flex-wrap gap-2">
-                {t.chat.quick.map((item) => (
-                  <button
-                    key={item}
-                    type="button"
-                    onClick={() => {
-                      sendChat(undefined, item);
-                      const key = item.toLowerCase();
-                      const target = Object.entries(sectionHrefByQuickIntent).find(([intent]) => key.includes(intent))?.[1];
-                      if (target) document.querySelector(target)?.scrollIntoView({ behavior: "smooth" });
-                    }}
-                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/80 transition hover:border-cyan-300/30 hover:text-cyan-200"
-                  >
-                    {item}
-                  </button>
-                ))}
-              </div>
-              <div ref={chatScrollRef} className="max-h-64 space-y-2 overflow-y-auto pr-1 text-sm">
-                {messages.map((message) => (
-                  <div key={message.id} className={message.role === "assistant" ? "text-cyan-200" : "text-fuchsia-200"}>
-                    {message.text}
-                  </div>
-                ))}
-              </div>
-              <form onSubmit={sendChat} className="mt-3 flex gap-2">
-                <input
-                  type="text"
-                  value={chatInput}
-                  onChange={(event) => setChatInput(event.target.value)}
-                  placeholder={t.chat.placeholder}
-                  className="w-full rounded-xl border border-white/20 bg-transparent px-3 py-2 text-xs outline-none ring-fuchsia-500 focus:ring-2"
-                />
-                <button type="submit" className="rounded-xl bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-3 py-2 text-xs font-semibold text-slate-950">
-                  {t.chat.send}
-                </button>
-              </form>
-            </motion.section>
-          )}
-        </AnimatePresence>
+              ))}
+            </div>
+            <div ref={chatScrollRef} className="max-h-64 space-y-2 overflow-y-auto pr-1 text-sm">
+              {messages.map((message) => (
+                <div key={message.id} className={message.role === "assistant" ? "text-cyan-200" : "text-fuchsia-200"}>
+                  {message.text}
+                </div>
+              ))}
+            </div>
+            <form onSubmit={sendChat} className="mt-3 flex gap-2">
+              <input
+                type="text"
+                value={chatInput}
+                onChange={(event) => setChatInput(event.target.value)}
+                placeholder={t.chat.placeholder}
+                className="w-full rounded-xl border border-white/20 bg-transparent px-3 py-2 text-xs outline-none"
+              />
+              <button type="submit" className="rounded-xl bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-3 py-2 text-xs font-semibold text-slate-950">
+                {t.chat.send}
+              </button>
+            </form>
+          </section>
+        )}
         {!chatOpen && (
           <button type="button" onClick={() => setChatOpen(true)} className="rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-fuchsia-500/30">
             {t.chat.open}
