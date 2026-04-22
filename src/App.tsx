@@ -1,14 +1,13 @@
 import { FormEvent, MouseEvent, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import Chat from "./components/Chat";
 import {
+  ArrowRight,
   BarChart3,
   CheckCircle2,
   Globe2,
   Mail,
   Menu,
   MessageCircle,
-  Phone,
   Radio,
   ScanLine,
   ShieldCheck,
@@ -17,6 +16,7 @@ import {
   TabletSmartphone,
   TrendingUp,
   UserRound,
+  Users,
   X,
   Zap,
 } from "lucide-react";
@@ -51,7 +51,6 @@ const COMPANY = {
   emails: [
     "hello@lumevio.pl",
     "contact@lumevio.pl",
-    "p.frontczak@lumevio.pl",
   ] as const,
   nip: "6681935834",
   regon: "380004555",
@@ -75,6 +74,7 @@ const copy = {
       products: "Produkty",
       experience: "Experience",
       industries: "Branże",
+      influencers: "Influencerzy",
       analytics: "Analityka",
       roi: "ROI",
       contact: "Kontakt",
@@ -89,6 +89,9 @@ const copy = {
       stats: ["Offline analytics", "Smart retail", "AI optimization"],
       ctaPrimary: "Poznaj platformę",
       ctaSecondary: "Porozmawiajmy",
+      panelTitle: "Inteligentna infrastruktura sprzedaży offline",
+      panelText:
+        "NFC, analityka i automatyzacja połączone w jedną warstwę operacyjną dla świata fizycznego.",
     },
     trust: {
       title: "Jedna platforma. Trzy warstwy wzrostu.",
@@ -191,6 +194,36 @@ const copy = {
         },
       ] as readonly IndustryCard[],
     },
+    influencerSection: {
+      badge: "Creator Program",
+      title: "Współpraca dla influencerów i twórców",
+      subtitle:
+        "Budujemy sieć twórców, którzy razem z LUMEVIO realizują kampanie dla marek, eventów i nowoczesnych wdrożeń phygital.",
+      howTitle: "Jak to działa?",
+      howSteps: [
+        "Zgłaszasz się do programu i pokazujesz swoje profile.",
+        "Otrzymujesz propozycje kampanii, eventów lub paczek PR.",
+        "Tworzysz content i aktywujesz swoją społeczność.",
+        "Zarabiasz na współpracy, performance lub projektach specjalnych.",
+      ],
+      formatsTitle: "Formaty współpracy",
+      formats: [
+        "Eventy i premiery",
+        "Paczki PR i unboxingi",
+        "Kampanie creatorskie dla marek",
+      ],
+      benefitsTitle: "Co zyskujesz?",
+      benefits: [
+        "Wynagrodzenie za kampanie i akcje specjalne",
+        "Możliwość udziału w eventach i premierach",
+        "Współprace z markami i kampaniami LUMEVIO",
+        "Paczki PR, scenariusze contentowe i wsparcie kreatywne",
+      ],
+      statLabel: "Potencjał współpracy",
+      statValue: "Content + sprzedaż + zasięg",
+      ctaPrimary: "Przejdź do kontaktu",
+      ctaSecondary: "Napisz do nas",
+    },
     roi: {
       title: "ROI Calculator",
       subtitle:
@@ -266,6 +299,7 @@ const copy = {
             { label: "Platforma", href: "#home" },
             { label: "Produkty", href: "#products" },
             { label: "Branże", href: "#industries" },
+            { label: "Influencerzy", href: "#influencers" },
             { label: "ROI", href: "#roi" },
             { label: "Kontakt", href: "#contact" },
           ],
@@ -276,13 +310,7 @@ const copy = {
         },
         company: {
           title: "Firma",
-          lines: [
-            COMPANY.brand,
-            `NIP: ${COMPANY.nip}`,
-            `REGON: ${COMPANY.regon}`,
-            COMPANY.phone,
-            COMPANY.website,
-          ],
+          lines: [COMPANY.brand, `NIP: ${COMPANY.nip}`, `REGON: ${COMPANY.regon}`, COMPANY.phone, COMPANY.website],
         },
       },
       legal: {
@@ -296,6 +324,7 @@ const copy = {
       products: "Products",
       experience: "Experience",
       industries: "Industries",
+      influencers: "Influencers",
       analytics: "Analytics",
       roi: "ROI",
       contact: "Contact",
@@ -310,6 +339,8 @@ const copy = {
       stats: ["Offline analytics", "Smart retail", "AI optimization"],
       ctaPrimary: "Explore platform",
       ctaSecondary: "Let’s talk",
+      panelTitle: "Intelligent offline sales infrastructure",
+      panelText: "NFC, analytics, and automation combined into one operational layer for the physical world.",
     },
     trust: {
       title: "One platform. Three layers of growth.",
@@ -412,6 +443,32 @@ const copy = {
         },
       ] as readonly IndustryCard[],
     },
+    influencerSection: {
+      badge: "Creator Program",
+      title: "Collaboration for influencers and creators",
+      subtitle:
+        "We are building a network of creators who work with LUMEVIO on campaigns for brands, events, and next-generation phygital activations.",
+      howTitle: "How does it work?",
+      howSteps: [
+        "Apply to the program and show us your social profiles.",
+        "You receive campaign, event, or PR package opportunities.",
+        "You create content and activate your audience.",
+        "You earn through collaboration, performance, or special projects.",
+      ],
+      formatsTitle: "Collaboration formats",
+      formats: ["Events and launches", "PR packages and unboxings", "Creator campaigns for brands"],
+      benefitsTitle: "What do you get?",
+      benefits: [
+        "Payment for campaigns and special activations",
+        "Access to events and launches",
+        "Partnerships with brands and LUMEVIO campaigns",
+        "PR packages, content scenarios, and creative support",
+      ],
+      statLabel: "Collaboration potential",
+      statValue: "Content + sales + reach",
+      ctaPrimary: "Go to contact",
+      ctaSecondary: "Email us",
+    },
     roi: {
       title: "ROI Calculator",
       subtitle:
@@ -487,6 +544,7 @@ const copy = {
             { label: "Platform", href: "#home" },
             { label: "Products", href: "#products" },
             { label: "Industries", href: "#industries" },
+            { label: "Influencers", href: "#influencers" },
             { label: "ROI", href: "#roi" },
             { label: "Contact", href: "#contact" },
           ],
@@ -497,13 +555,7 @@ const copy = {
         },
         company: {
           title: "Company",
-          lines: [
-            COMPANY.brand,
-            `NIP: ${COMPANY.nip}`,
-            `REGON: ${COMPANY.regon}`,
-            COMPANY.phone,
-            COMPANY.website,
-          ],
+          lines: [COMPANY.brand, `NIP: ${COMPANY.nip}`, `REGON: ${COMPANY.regon}`, COMPANY.phone, COMPANY.website],
         },
       },
       legal: {
@@ -712,7 +764,7 @@ function SmartShelfDemo({
             {shelf}
           </div>
 
-          <h3 className="max-w-xl text-4xl font-semibold leading-tight text-white">
+          <h3 className="max-w-xl text-3xl font-semibold leading-tight text-white sm:text-4xl">
             {lang === "pl" ? "Zamień półkę w interaktywny kanał sprzedaży" : "Turn the shelf into an interactive sales channel"}
           </h3>
 
@@ -891,6 +943,18 @@ function FloatingCloud3D() {
   );
 }
 
+function SectionHeader({ badge, title, subtitle, dark = false }: { badge: string; title: string; subtitle: string; dark?: boolean }) {
+  return (
+    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} className="mx-auto max-w-3xl text-center">
+      <div className={`inline-flex items-center rounded-full border px-4 py-2 text-[11px] font-medium uppercase tracking-[0.22em] ${dark ? "border-cyan-300/20 bg-cyan-300/10 text-cyan-200" : "border-fuchsia-500/20 bg-fuchsia-500/5 text-fuchsia-500"}`}>
+        {badge}
+      </div>
+      <h2 className={`mt-6 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl lg:text-5xl ${dark ? "text-white" : "text-inherit"}`}>{title}</h2>
+      <p className={`mt-5 mx-auto max-w-2xl text-sm leading-7 sm:text-base ${dark ? "text-white/65" : "text-slate-600 dark:text-slate-300"}`}>{subtitle}</p>
+    </motion.div>
+  );
+}
+
 export default function App() {
   const [theme, setTheme] = useState<Theme>(initialTheme);
   const [lang, setLang] = useState<Lang>(initialLang);
@@ -1024,6 +1088,7 @@ export default function App() {
             <a href="#products" className="transition hover:text-fuchsia-400">{t.nav.products}</a>
             <a href="#experience" className="transition hover:text-fuchsia-400">{t.nav.experience}</a>
             <a href="#industries" className="transition hover:text-fuchsia-400">{t.nav.industries}</a>
+            <a href="#influencers" className="transition hover:text-fuchsia-400">{t.nav.influencers}</a>
             <a href="#analytics" className="transition hover:text-fuchsia-400">{t.nav.analytics}</a>
             <a href="#roi" className="transition hover:text-fuchsia-400">{t.nav.roi}</a>
             <a href="#contact" className="transition hover:text-fuchsia-400">{t.nav.contact}</a>
@@ -1048,17 +1113,13 @@ export default function App() {
 
         <AnimatePresence>
           {mobileOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              className="border-t border-white/10 bg-white/95 px-6 py-4 dark:bg-[#02020b]/95 lg:hidden"
-            >
+            <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="border-t border-white/10 bg-white/95 px-6 py-4 dark:bg-[#02020b]/95 lg:hidden">
               <div className="flex flex-col gap-3 text-sm">
                 {[
                   { href: "#products", label: t.nav.products },
                   { href: "#experience", label: t.nav.experience },
                   { href: "#industries", label: t.nav.industries },
+                  { href: "#influencers", label: t.nav.influencers },
                   { href: "#analytics", label: t.nav.analytics },
                   { href: "#roi", label: t.nav.roi },
                   { href: "#contact", label: t.nav.contact },
@@ -1092,25 +1153,25 @@ export default function App() {
                 <img src={visuals.logo} alt="LUMEVIO logo" className="h-20 w-auto object-contain sm:h-24 md:h-32 lg:h-40" />
               </div>
 
-              <h1 className="bg-gradient-to-r from-fuchsia-500 via-violet-400 to-cyan-400 bg-clip-text text-4xl font-semibold leading-tight tracking-tight text-transparent sm:text-6xl">
+              <h1 className="bg-gradient-to-r from-fuchsia-500 via-violet-400 to-cyan-400 bg-clip-text text-4xl font-semibold leading-[1.02] tracking-[-0.03em] text-transparent sm:text-5xl lg:text-6xl">
                 {t.hero.title}
               </h1>
 
-              <p className="max-w-2xl text-lg text-slate-200 sm:text-xl">{t.hero.subtitle}</p>
+              <p className="max-w-2xl text-sm leading-7 text-slate-200/85 sm:text-base sm:leading-8">{t.hero.subtitle}</p>
 
               <div className="flex flex-wrap gap-3">
                 {t.hero.stats.map((item) => (
-                  <div key={item} className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/80 backdrop-blur">
+                  <div key={item} className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.18em] text-white/75 backdrop-blur sm:text-sm">
                     {item}
                   </div>
                 ))}
               </div>
 
               <div className="flex flex-wrap gap-4">
-                <a href="#products" className="rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-7 py-3 font-semibold text-slate-950">
+                <a href="#products" className="rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-7 py-3 text-sm font-semibold text-slate-950">
                   {t.hero.ctaPrimary}
                 </a>
-                <a href="#contact" className="rounded-full border border-white/60 px-7 py-3 font-semibold text-white">
+                <a href="#contact" className="rounded-full border border-white/60 px-7 py-3 text-sm font-semibold text-white">
                   {t.hero.ctaSecondary}
                 </a>
               </div>
@@ -1119,6 +1180,11 @@ export default function App() {
             <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, x: 30 }} animate={shouldReduceMotion ? {} : { opacity: 1, x: 0 }} transition={{ duration: 0.9 }} className="relative">
               <div className="grid gap-6">
                 <FloatingCloud3D />
+                <div className="rounded-[28px] border border-white/10 bg-white/5 p-5 text-white backdrop-blur-xl">
+                  <div className="text-[11px] uppercase tracking-[0.22em] text-cyan-200/80">LUMEVIO Platform</div>
+                  <h3 className="mt-3 text-xl font-semibold tracking-[-0.02em]">{t.hero.panelTitle}</h3>
+                  <p className="mt-3 text-sm leading-6 text-white/65">{t.hero.panelText}</p>
+                </div>
                 <div className="grid gap-4 sm:grid-cols-3">
                   {[
                     { icon: ShieldCheck, label: "Enterprise-ready" },
@@ -1139,14 +1205,14 @@ export default function App() {
         <section className="mx-auto max-w-7xl px-6 py-14">
           <div className="grid gap-4 rounded-[32px] border border-slate-200/70 bg-white/80 p-6 dark:border-white/10 dark:bg-white/5 md:grid-cols-3 md:p-8">
             <div className="md:col-span-1">
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-fuchsia-500">LUMEVIO</p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight">{t.trust.title}</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-fuchsia-500">LUMEVIO</p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">{t.trust.title}</h2>
             </div>
             <div className="md:col-span-2 grid gap-4 md:grid-cols-3">
               {t.trust.points.map((point) => (
                 <div key={point} className="rounded-[24px] border border-slate-200/70 bg-slate-50 p-5 dark:border-white/10 dark:bg-[#0b1422]">
                   <CheckCircle2 className="mb-3 h-5 w-5 text-cyan-400" />
-                  <p className="text-sm leading-7 text-slate-600 dark:text-slate-300">{point}</p>
+                  <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">{point}</p>
                 </div>
               ))}
             </div>
@@ -1154,39 +1220,30 @@ export default function App() {
         </section>
 
         <section id="products" className="mx-auto max-w-7xl px-6 py-24 sm:py-28">
-          <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} className="mx-auto max-w-3xl text-center">
-            <div className="inline-flex items-center rounded-full border border-fuchsia-500/20 bg-fuchsia-500/5 px-4 py-2 text-xs font-medium uppercase tracking-[0.22em] text-fuchsia-500">
-              LUMEVIO Ecosystem
-            </div>
-            <h2 className="mt-6 text-3xl font-semibold tracking-tight sm:text-5xl">{t.products.title}</h2>
-            <p className="mt-5 text-base leading-8 text-slate-600 dark:text-slate-300 sm:text-lg">{t.products.subtitle}</p>
-          </motion.div>
-
+          <SectionHeader badge="LUMEVIO Ecosystem" title={t.products.title} subtitle={t.products.subtitle} />
           <div className="mt-14 grid gap-8 lg:grid-cols-3">
             {productColumns.map((product, index) => (
               <motion.article key={product.name} initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: index * 0.12, duration: 0.55 }} className="group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white/90 shadow-[0_20px_80px_-30px_rgba(168,85,247,0.35)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_30px_100px_-30px_rgba(34,211,238,0.28)] dark:border-white/10 dark:bg-[#0a0a1d]/95">
                 <div className="overflow-hidden">
                   <img src={product.image} alt={product.name} className="h-56 w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
                 </div>
-
                 <div className="p-7">
                   <div className="mb-5 flex items-start justify-between gap-4">
                     <div>
-                      <h3 className="text-2xl font-semibold tracking-tight">{product.name}</h3>
-                      <p className="mt-2 text-sm font-medium text-fuchsia-500">{product.tag}</p>
+                      <h3 className="text-xl font-semibold tracking-[-0.02em] lg:text-2xl">{product.name}</h3>
+                      <p className="mt-2 text-xs font-medium uppercase tracking-[0.18em] text-fuchsia-500/90">{product.tag}</p>
                     </div>
                     <div className="rounded-2xl border border-slate-200/80 bg-white/80 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-500 shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-slate-300">
                       {String(index + 1).padStart(2, "0")}
                     </div>
                   </div>
-
                   <div className="space-y-4">
                     {product.points.map((point, pointIndex) => (
                       <div key={point} className="flex items-start gap-3">
                         <div className="mt-1.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 text-[10px] font-bold text-slate-950">
                           {pointIndex + 1}
                         </div>
-                        <p className="text-sm leading-7 text-slate-600 dark:text-slate-300">{point}</p>
+                        <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">{point}</p>
                       </div>
                     ))}
                   </div>
@@ -1198,20 +1255,14 @@ export default function App() {
 
         <section id="experience" className="bg-[#05051b] py-20 text-white sm:py-24">
           <div className="mx-auto max-w-7xl px-6">
-            <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} className="max-w-3xl">
-              <h2 className="text-3xl font-semibold sm:text-5xl">{t.experience.title}</h2>
-              <p className="mt-4 text-slate-300">{t.experience.subtitle}</p>
-            </motion.div>
-
+            <SectionHeader badge="Why it matters" title={t.experience.title} subtitle={t.experience.subtitle} dark />
             <div className="mt-10 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
               <div className="rounded-[32px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl md:p-8">
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs font-medium text-cyan-200">
                   <Sparkles className="h-3.5 w-3.5" />
                   Why it matters
                 </div>
-
                 <h3 className="text-3xl font-semibold leading-tight text-white">{t.experience.sideTitle}</h3>
-
                 <div className="mt-8 grid gap-4">
                   {t.experience.sidePoints.map((item) => (
                     <div key={item} className="rounded-[24px] border border-white/10 bg-[#0b1422] p-4">
@@ -1220,7 +1271,6 @@ export default function App() {
                   ))}
                 </div>
               </div>
-
               <SmartShelfDemo labels={t.experience.labels} shelf={t.experience.shelf} trigger={t.experience.trigger} tap={t.experience.tap} live={t.experience.live} lang={lang} />
             </div>
           </div>
@@ -1228,14 +1278,7 @@ export default function App() {
 
         <section id="industries" className="relative overflow-hidden bg-[#05051b] py-20 text-white sm:py-24">
           <div className="relative mx-auto max-w-7xl px-6">
-            <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} className="mx-auto max-w-3xl text-center">
-              <div className="inline-flex items-center rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.22em] text-cyan-200">
-                {t.industries.badge}
-              </div>
-              <h2 className="mt-6 text-3xl font-semibold tracking-tight sm:text-5xl">{t.industries.title}</h2>
-              <p className="mt-5 text-base leading-8 text-white/65 sm:text-lg">{t.industries.subtitle}</p>
-            </motion.div>
-
+            <SectionHeader badge={t.industries.badge} title={t.industries.title} subtitle={t.industries.subtitle} dark />
             <div className="mt-14 grid gap-8 lg:grid-cols-3">
               {t.industries.items.map((item, index) => (
                 <motion.article key={item.name} initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: index * 0.12, duration: 0.55 }} whileHover={shouldReduceMotion ? undefined : { y: -8 }} className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-white/5 shadow-[0_20px_80px_-30px_rgba(34,211,238,0.15)] backdrop-blur-xl">
@@ -1245,27 +1288,26 @@ export default function App() {
                   <div className="p-7">
                     <div className="mb-5 flex items-start justify-between gap-4">
                       <div>
-                        <h3 className="text-2xl font-semibold tracking-tight text-white">{item.name}</h3>
-                        <p className="mt-2 text-sm font-medium text-cyan-200">{item.tag}</p>
+                        <h3 className="text-xl font-semibold tracking-[-0.02em] text-white lg:text-2xl">{item.name}</h3>
+                        <p className="mt-2 text-xs font-medium uppercase tracking-[0.18em] text-cyan-200/90">{item.tag}</p>
                       </div>
                       <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/50">
                         {String(index + 1).padStart(2, "0")}
                       </div>
                     </div>
-
                     <div className="space-y-4">
                       {item.points.map((point, pointIndex) => (
                         <div key={point} className="flex items-start gap-3">
                           <div className="mt-1.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 text-[10px] font-bold text-slate-950">
                             {pointIndex + 1}
                           </div>
-                          <p className="text-sm leading-7 text-white/70">{point}</p>
+                          <p className="text-sm leading-6 text-white/70">{point}</p>
                         </div>
                       ))}
                     </div>
-
-                    <button type="button" className="mt-6 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white transition hover:border-cyan-300/30 hover:text-cyan-200">
+                    <button type="button" className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white transition hover:border-cyan-300/30 hover:text-cyan-200">
                       {t.industries.cta}
+                      <ArrowRight className="h-4 w-4" />
                     </button>
                   </div>
                 </motion.article>
@@ -1274,12 +1316,78 @@ export default function App() {
           </div>
         </section>
 
+        <section id="influencers" className="relative overflow-hidden bg-[#040816] py-24 text-white sm:py-28">
+          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+            <div className="absolute left-[-10%] top-10 h-[320px] w-[320px] rounded-full bg-fuchsia-500/10 blur-[120px]" />
+            <div className="absolute right-[-8%] bottom-0 h-[360px] w-[360px] rounded-full bg-cyan-400/10 blur-[140px]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.04),transparent_40%)]" />
+          </div>
+          <div className="relative mx-auto max-w-7xl px-6">
+            <SectionHeader badge={t.influencerSection.badge} title={t.influencerSection.title} subtitle={t.influencerSection.subtitle} dark />
+            <div className="mt-14 grid gap-8 xl:grid-cols-[1.05fr_0.95fr]">
+              <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} className="rounded-[32px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl md:p-8">
+                <div className="mb-6 flex items-center justify-between gap-4">
+                  <div>
+                    <div className="text-[11px] uppercase tracking-[0.22em] text-cyan-200/80">{lang === "pl" ? "Program współpracy" : "Partnership program"}</div>
+                    <h3 className="mt-2 text-2xl font-semibold tracking-[-0.02em]">{t.influencerSection.howTitle}</h3>
+                  </div>
+                  <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-[11px] uppercase tracking-[0.22em] text-white/50">LUMEVIO</div>
+                </div>
+                <div className="grid gap-4 md:grid-cols-2">
+                  {t.influencerSection.howSteps.map((item, index) => (
+                    <div key={item} className="rounded-[24px] border border-white/10 bg-[#081120] p-5 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.5)]">
+                      <div className="mb-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 text-xs font-bold text-slate-950">
+                        {index + 1}
+                      </div>
+                      <p className="text-sm leading-6 text-white/75">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+              <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} className="space-y-6">
+                <div className="rounded-[32px] border border-cyan-300/10 bg-gradient-to-br from-[#0a1220] to-[#07111f] p-6 shadow-[0_30px_100px_-40px_rgba(34,211,238,0.28)] md:p-8">
+                  <div className="text-[11px] uppercase tracking-[0.22em] text-fuchsia-300/80">{lang === "pl" ? "Dlaczego warto" : "Why join"}</div>
+                  <h3 className="mt-2 text-2xl font-semibold tracking-[-0.02em]">{t.influencerSection.benefitsTitle}</h3>
+                  <div className="mt-6 space-y-3">
+                    {t.influencerSection.benefits.map((item) => (
+                      <div key={item} className="flex items-start gap-3 rounded-[20px] border border-white/10 bg-white/5 px-4 py-4">
+                        <div className="mt-1 h-2.5 w-2.5 rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400" />
+                        <p className="text-sm leading-6 text-white/80">{item}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="grid gap-6 md:grid-cols-2">
+                  <div className="rounded-[28px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+                    <div className="text-[11px] uppercase tracking-[0.22em] text-cyan-200/80">{t.influencerSection.formatsTitle}</div>
+                    <div className="mt-5 space-y-3">
+                      {t.influencerSection.formats.map((item) => (
+                        <div key={item} className="rounded-[18px] border border-white/10 bg-[#081120] px-4 py-3 text-sm text-white/80">
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="rounded-[28px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+                    <div className="text-[11px] uppercase tracking-[0.22em] text-cyan-200/80">{t.influencerSection.statLabel}</div>
+                    <div className="mt-4 text-2xl font-semibold tracking-[-0.02em]">{t.influencerSection.statValue}</div>
+                    <p className="mt-4 text-sm leading-6 text-white/65">{lang === "pl" ? "Sekcja influencerów prowadzi do tej samej zakładki kontaktowej, dzięki czemu cały ruch spina się w jeden lejek kontaktowy." : "The influencer section leads to the same contact section, keeping all inbound traffic inside one clear contact funnel."}</p>
+                    <div className="mt-6 flex flex-wrap gap-3">
+                      <a href="#contact" className="rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950">{t.influencerSection.ctaPrimary}</a>
+                      <a href="mailto:partnership@lumevio.pl?subject=Współpraca%20influencerska%20LUMEVIO" className="rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white">{t.influencerSection.ctaSecondary}</a>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
         <section id="roi" className="mx-auto max-w-7xl px-6 py-20 sm:py-24">
           <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-xl shadow-fuchsia-500/5 dark:border-white/10 dark:bg-[#081120] md:p-8">
-              <h2 className="text-3xl font-semibold sm:text-5xl">{t.roi.title}</h2>
-              <p className="mt-4 text-slate-600 dark:text-slate-300">{t.roi.subtitle}</p>
-
+              <h2 className="text-3xl font-semibold tracking-[-0.03em] sm:text-4xl lg:text-5xl">{t.roi.title}</h2>
+              <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300 sm:text-base">{t.roi.subtitle}</p>
               <div className="mt-8 grid gap-5 md:grid-cols-2">
                 {[
                   { label: t.roi.stores, value: stores, setValue: setStores, min: 1, max: 500, step: 1 },
@@ -1296,10 +1404,8 @@ export default function App() {
                   </div>
                 ))}
               </div>
-
               <p className="mt-6 text-sm leading-7 text-slate-500 dark:text-white/60">{t.roi.note}</p>
             </div>
-
             <div className="grid gap-4">
               <div className="rounded-[24px] border border-white/10 bg-[#081423] p-5">
                 <div className="mb-2 flex items-center gap-2 text-sm text-cyan-200">
@@ -1308,7 +1414,6 @@ export default function App() {
                 </div>
                 <div className="text-3xl font-semibold text-white">{formatCurrency(roi.monthly)}</div>
               </div>
-
               <div className="rounded-[24px] border border-white/10 bg-[#081423] p-5">
                 <div className="mb-2 flex items-center gap-2 text-sm text-cyan-200">
                   <TrendingUp className="h-4 w-4" />
@@ -1316,7 +1421,6 @@ export default function App() {
                 </div>
                 <div className="text-3xl font-semibold text-white">{formatCurrency(roi.yearly)}</div>
               </div>
-
               <div className="rounded-[24px] border border-white/10 bg-[#081423] p-5">
                 <div className="mb-2 flex items-center gap-2 text-sm text-cyan-200">
                   <MessageCircle className="h-4 w-4" />
@@ -1330,21 +1434,12 @@ export default function App() {
 
         <section id="analytics" className="relative overflow-hidden bg-[#05051b] py-20 text-white sm:py-24">
           <div className="relative mx-auto max-w-7xl px-6">
-            <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} className="max-w-3xl">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-cyan-200">
-                <Sparkles className="h-3.5 w-3.5" />
-                LUMEVIO Intelligence Layer
-              </div>
-              <h2 className="text-3xl font-semibold sm:text-5xl">{t.analytics.title}</h2>
-              <p className="mt-4 text-slate-300">{t.analytics.subtitle}</p>
-            </motion.div>
-
+            <SectionHeader badge="LUMEVIO Intelligence Layer" title={t.analytics.title} subtitle={t.analytics.subtitle} dark />
             <div className="mt-8 overflow-hidden rounded-[24px] border border-cyan-300/20 bg-cyan-300/10 px-4 py-3 text-sm text-cyan-100 backdrop-blur-xl">
               <motion.div animate={shouldReduceMotion ? {} : { x: ["0%", "-12%", "0%"] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} className="whitespace-nowrap">
                 {t.analytics.ticker}
               </motion.div>
             </div>
-
             <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {[
                 { label: t.analytics.cards[0], value: liveStats.interactions, icon: Radio },
@@ -1368,7 +1463,7 @@ export default function App() {
 
         <section className="mx-auto max-w-7xl px-6 py-20 sm:py-24">
           <div className="rounded-[32px] border border-slate-200 bg-white p-6 dark:border-white/10 dark:bg-[#081120] md:p-8">
-            <h2 className="text-3xl font-semibold sm:text-5xl">{t.faq.title}</h2>
+            <h2 className="text-3xl font-semibold tracking-[-0.03em] sm:text-4xl lg:text-5xl">{t.faq.title}</h2>
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               {t.faq.items.map((item) => (
                 <div key={item.q} className="rounded-[24px] border border-slate-200 bg-slate-50 p-5 dark:border-white/10 dark:bg-[#0b1422]">
@@ -1388,10 +1483,9 @@ export default function App() {
                   <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-1 text-xs uppercase tracking-widest text-cyan-200">
                     LUMEVIO CONTACT
                   </div>
-                  <h2 className="text-4xl font-semibold leading-tight sm:text-5xl">{t.contact.title}</h2>
-                  <p className="mt-5 max-w-xl text-base leading-8 text-white/60">{t.contact.subtitle}</p>
+                  <h2 className="text-4xl font-semibold leading-tight tracking-[-0.03em] sm:text-5xl">{t.contact.title}</h2>
+                  <p className="mt-5 max-w-xl text-sm leading-7 text-white/60 sm:text-base sm:leading-8">{t.contact.subtitle}</p>
                 </div>
-
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="rounded-[24px] border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
                     <div className="mb-2 text-xs uppercase tracking-widest text-cyan-300/70">Company</div>
@@ -1401,7 +1495,6 @@ export default function App() {
                       <p>REGON: {COMPANY.regon}</p>
                     </div>
                   </div>
-
                   <div className="rounded-[24px] border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
                     <div className="mb-2 text-xs uppercase tracking-widest text-cyan-300/70">Direct</div>
                     <div className="space-y-2 text-sm text-white/80">
@@ -1410,7 +1503,6 @@ export default function App() {
                     </div>
                   </div>
                 </div>
-
                 <div className="rounded-[24px] border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
                   <div className="mb-3 text-xs uppercase tracking-widest text-cyan-300/70">Email</div>
                   <div className="grid gap-3 sm:grid-cols-2">
@@ -1423,7 +1515,6 @@ export default function App() {
                   </div>
                 </div>
               </motion.div>
-
               <motion.div initial={shouldReduceMotion ? {} : { opacity: 0, x: 30 }} whileInView={shouldReduceMotion ? {} : { opacity: 1, x: 0 }} viewport={{ once: true }} className="relative">
                 <div className="absolute inset-0 rounded-[32px] bg-gradient-to-br from-fuchsia-500/10 to-cyan-400/10 blur-2xl" />
                 <ContactForm t={t.contact} lang={lang} />
@@ -1440,14 +1531,12 @@ export default function App() {
               <p key={note}>{note}</p>
             ))}
           </div>
-
           <div className="grid gap-10 py-10 sm:grid-cols-2 lg:grid-cols-4">
             <div>
               <div className="mb-5">
                 <img src={visuals.logo} alt="LUMEVIO logo" className="h-20 w-auto object-contain sm:h-24 md:h-28 lg:h-32" />
               </div>
             </div>
-
             <div>
               <h4 className="mb-4 text-xs font-semibold text-slate-900 dark:text-white">{t.footer.columns.explore.title}</h4>
               <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
@@ -1458,7 +1547,6 @@ export default function App() {
                 ))}
               </ul>
             </div>
-
             <div>
               <h4 className="mb-4 text-xs font-semibold text-slate-900 dark:text-white">{t.footer.columns.products.title}</h4>
               <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
@@ -1467,7 +1555,6 @@ export default function App() {
                 ))}
               </ul>
             </div>
-
             <div>
               <h4 className="mb-4 text-xs font-semibold text-slate-900 dark:text-white">{t.footer.columns.company.title}</h4>
               <div className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
@@ -1477,7 +1564,6 @@ export default function App() {
               </div>
             </div>
           </div>
-
           <div className="border-t border-slate-300 pt-6 text-xs text-slate-500 dark:border-white/10 dark:text-slate-400">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
               <p>{t.footer.legal.copyright}</p>
@@ -1490,19 +1576,13 @@ export default function App() {
       <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
         <AnimatePresence>
           {chatOpen && (
-            <motion.section
-              initial={{ opacity: 0, y: 20, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.96 }}
-              className="w-[min(92vw,380px)] rounded-2xl border border-white/20 bg-[#090921]/95 p-4 text-white shadow-2xl shadow-fuchsia-500/20 backdrop-blur"
-            >
+            <motion.section initial={{ opacity: 0, y: 20, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 20, scale: 0.96 }} className="w-[min(92vw,380px)] rounded-2xl border border-white/20 bg-[#090921]/95 p-4 text-white shadow-2xl shadow-fuchsia-500/20 backdrop-blur">
               <div className="mb-3 flex items-center justify-between">
                 <p className="font-semibold">{t.chat.title}</p>
                 <button type="button" className="text-xs text-slate-300" onClick={() => setChatOpen(false)}>
                   {t.chat.close}
                 </button>
               </div>
-
               <div className="mb-3 flex flex-wrap gap-2">
                 {t.chat.quick.map((item) => (
                   <button
@@ -1520,7 +1600,6 @@ export default function App() {
                   </button>
                 ))}
               </div>
-
               <div ref={chatScrollRef} className="max-h-64 space-y-2 overflow-y-auto pr-1 text-sm">
                 {messages.map((message) => (
                   <div key={message.id} className={message.role === "assistant" ? "text-cyan-200" : "text-fuchsia-200"}>
@@ -1528,7 +1607,6 @@ export default function App() {
                   </div>
                 ))}
               </div>
-
               <form onSubmit={sendChat} className="mt-3 flex gap-2">
                 <input
                   type="text"
@@ -1544,7 +1622,6 @@ export default function App() {
             </motion.section>
           )}
         </AnimatePresence>
-
         {!chatOpen && (
           <button type="button" onClick={() => setChatOpen(true)} className="rounded-full bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-fuchsia-500/30">
             {t.chat.open}
